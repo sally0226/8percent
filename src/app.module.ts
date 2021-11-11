@@ -3,6 +3,9 @@ import { ConfigModule } from "@nestjs/config";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
+import { Account } from "./domain/entities/account.entity";
+import { History } from "./domain/entities/history.entity";
+import { User } from "./domain/entities/user.entity";
 
 @Module({
 	imports: [
@@ -22,8 +25,8 @@ import { MorganInterceptor, MorganModule } from "nest-morgan";
 			username: process.env.DB_USER,
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_DATABASE,
-			entities: [],
-			synchronize: true
+			entities: [User, History, Account]
+			// synchronize: true
 		}),
 		MorganModule
 	],
