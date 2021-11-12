@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { BeforeInsert, Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { Account } from "./account.entity";
 import { BaseModel } from "./base/base.entity";
+import * as bcrypt from "bcrypt";
 
 @Entity("user")
 export class User extends BaseModel {
@@ -18,7 +19,13 @@ export class User extends BaseModel {
 	userName!: string;
 
 	@OneToMany(() => Account, (account) => account.user, {
-		onDelete: "CASCADE"
+		// onDelete: "CASCADE"
+		// cascade: false
 	})
 	account?: Account[];
+
+	@BeforeInsert()
+	async setPassword(password: string) {
+		this.password = await bcrypt.hash(password || this.password, 10);
+	}
 }

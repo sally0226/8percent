@@ -11,11 +11,11 @@ export class AccountService {
 	constructor(private accountRepository: AccountRepository) {}
 
 	async create(user: JwtPayload, password: string): Promise<CreateAccountRes> {
-		const hashed = await this.hash(password);
+		// const hashed = await this.hash(password);
 		return new CreateAccountRes(
 			await this.accountRepository.createOne(
 				user.userId,
-				hashed,
+				password,
 				await this.createAccountNumber()
 			)
 		);
@@ -31,9 +31,9 @@ export class AccountService {
 		await this.accountRepository.deleteOne(accountNum);
 	}
 
-	private hash(password: string): Promise<string> {
-		return bcrypt.hash(password, 10);
-	}
+	// private hash(password: string): Promise<string> {
+	// 	return bcrypt.hash(password, 10);
+	// }
 
 	private async createAccountNumber(): Promise<string> {
 		const accountNumber = this.inputHyphen(this.makeRandom());
