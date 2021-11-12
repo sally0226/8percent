@@ -2,15 +2,18 @@ import { Injectable } from '@nestjs/common';
 import { AccountRepository } from './account.repository';
 import * as bcrypt from 'bcrypt';
 import { Account } from '../entities/account.entity';
+import { JwtPayload } from '../auth/dto/jwtPayload.dto';
+import { CreateAccountRes } from './dto/createAccountRes.dto';
 
 @Injectable()
 export class AccountService {
     constructor(private accountRepository: AccountRepository) {}
     
-    async create(user, password: string): Promise<Account> {
+    async create(user: JwtPayload, password: string): Promise<CreateAccountRes> {
         const hashed = await this.hash(password);
-        return await this.accountRepository
-            .createOne(user, hashed, await this.createAccountNumber());
+        return new CreateAccountRes(await this.accountRepository
+                .createOne(user.userId, hashed,
+                await this.createAccountNumber()));
     }
 
     private hash(password: string) {

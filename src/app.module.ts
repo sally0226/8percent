@@ -7,6 +7,8 @@ import { Account } from "./domain/entities/account.entity";
 import { History } from "./domain/entities/history.entity";
 import { User } from "./domain/entities/user.entity";
 import { AccountModule } from './domain/account/account.module';
+import { UserModule } from "./domain/user/user.module";
+import { AuthModule } from "./domain/auth/auth.module";
 
 @Module({
 	imports: [
@@ -27,10 +29,13 @@ import { AccountModule } from './domain/account/account.module';
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_DATABASE,
 			entities: [User, History, Account],
-			synchronize: true
+			synchronize: true,
+			keepConnectionAlive: true
 		}),
 		MorganModule,
-		AccountModule
+		AccountModule,
+		UserModule,
+		AuthModule
 	],
 	providers: [
 		{

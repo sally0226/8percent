@@ -1,3 +1,3 @@
-// export class CreateAccountReq {
-//     password: string;
-// }
+export class CreateAccountReq {
+    password: string;
+}
