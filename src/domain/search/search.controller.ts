@@ -35,17 +35,17 @@ export class SearchController {
 			maxAmount,
 			pageNum
 		);
-		return null;
-		// return this.searchService.history(
-		// 	req.user,
-		// 	accountNum,
-		// 	type,
-		// 	startDate,
-		// 	endDate,
-		// 	brief,
-		// 	minAmount,
-		// 	maxAmount,
-		// 	pageNum
-		// );
+
+		return this.searchService.history(
+			req.user,
+			accountNum,
+			type,
+			startDate,
+			endDate,
+			brief,
+			minAmount,
+			maxAmount,
+			pageNum
+		);
 	}
 }

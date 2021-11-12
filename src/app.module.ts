@@ -27,7 +27,8 @@ import { SearchModule } from "./domain/search/search.module";
 			username: process.env.DB_USER,
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_DATABASE,
-			entities: [User, History, Account]
+			entities: [User, History, Account],
+			logging: true
 			// synchronize: true
 		}),
 		MorganModule,
@@ -37,8 +38,7 @@ import { SearchModule } from "./domain/search/search.module";
 		{
 			provide: APP_INTERCEPTOR,
 			useClass: MorganInterceptor("combined")
-		},
-		SearchService
+		}
 	]
 })
 export class AppModule {}

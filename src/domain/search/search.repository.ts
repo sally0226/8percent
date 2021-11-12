@@ -28,16 +28,13 @@ export class HistoryRepository extends Repository<History> {
 			.addSelect("h.brief", "적요")
 			.addSelect("h.createdAt", "거래일시")
 			.innerJoin(Account, "a", "a.accountNum = h.accountNum");
-
 		if (type === typeOptions.deposit) historyQuery.where("h.type = TRUE");
 		if (type === typeOptions.withdraw) historyQuery.where("h.type = FALSE");
 		if (type === typeOptions.all)
 			historyQuery.where("h.type = TRUE OR h.type = FALSE");
-
 		historyQuery.andWhere("h.accountNum = :accountNum", {
 			accountNum: accountNum
 		});
-
 		if (startDate != undefined && endDate != undefined)
 			historyQuery.andWhere(
 				"h.createdAt BETWEEN :startDate AND :endDate",
@@ -46,10 +43,8 @@ export class HistoryRepository extends Repository<History> {
 					endDate: endDate
 				}
 			);
-
 		if (brief != undefined)
 			historyQuery.andWhere("h.brief = :brief", { brief: brief });
-
 		if (minAmount != 0 && maxAmount != 0)
 			historyQuery.andWhere(
 				"h.createdAt BETWEEN :minAmount AND :maxAmount",
@@ -58,10 +53,8 @@ export class HistoryRepository extends Repository<History> {
 					maxAmount: maxAmount
 				}
 			);
-
 		historyQuery.offset(page);
 		historyQuery.limit(10);
-
 		return historyQuery.getRawMany();
 	}
 

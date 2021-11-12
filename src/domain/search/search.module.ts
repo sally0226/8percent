@@ -7,7 +7,7 @@ import { HistoryRepository } from "./search.repository";
 import { SearchService } from "./search.service";
 
 @Module({
-	imports: [TypeOrmModule.forFeature([History, Account, HistoryRepository])],
+	imports: [TypeOrmModule.forFeature([HistoryRepository, History, Account])],
 	controllers: [SearchController],
 	providers: [SearchService]
 })
