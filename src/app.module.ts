@@ -6,6 +6,7 @@ import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { Account } from "./domain/entities/account.entity";
 import { History } from "./domain/entities/history.entity";
 import { User } from "./domain/entities/user.entity";
+import { AccountModule } from './domain/account/account.module';
 
 @Module({
 	imports: [
@@ -25,10 +26,11 @@ import { User } from "./domain/entities/user.entity";
 			username: process.env.DB_USER,
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_DATABASE,
-			entities: [User, History, Account]
-			// synchronize: true
+			entities: [User, History, Account],
+			synchronize: true
 		}),
-		MorganModule
+		MorganModule,
+		AccountModule
 	],
 	providers: [
 		{
