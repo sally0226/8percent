@@ -17,22 +17,13 @@ export class AccountRepository extends Repository<Account> {
 		return this.save(created);
 	}
 
-	async updateBalance(accountNum, money: number) {
-		// 계좌 잔액
-		const account = await this.getOne(accountNum);
-		const balance = Math.floor(await account.balance) + money;
-		if (balance < 0) {
-			account.balance = balance;
-			throw new LackOfBalanceExcetion();
-		}
-
-		await this.createQueryBuilder()
+	async updateBalance(account: Account) {
+		const { accountNum } = account;
+		return await this.createQueryBuilder()
 			.update()
-			.set({ balance: balance })
-			.where("accountNum = :accountNum ", { accountNum: accountNum })
+			.set(account)
+			.where("accountNum = :accountNum ", { accountNum })
 			.execute();
-		account.balance = balance;
-		return { balance, account };
 	}
 
 	async isExisted(accountNum: string): Promise<number> {

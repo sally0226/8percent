@@ -7,6 +7,9 @@ import { TransactionRepository } from "./transaction.repository";
 import * as bcrypt from "bcrypt";
 import { IncorrectPasswordException } from "../account/exception/IncorrectPasswordException";
 import { ApiQuery } from "@nestjs/swagger";
+import { check } from "prettier";
+import { Account } from "../entities/account.entity";
+import { LackOfBalanceExcetion } from "./exception/lackOfBalanceException";
 
 @Injectable()
 export class TransactionService {
@@ -16,72 +19,45 @@ export class TransactionService {
 		private readonly accountRepository: AccountRepository
 	) {}
 
-	async deposit(loginUser, transactionDto: TranscationDto) {
-		if (!loginUser?.userId) throw new UnauthorizedException();
+	async deposit(user, transactionDto: TranscationDto) {
+		const { accountNum, password, money } = transactionDto;
+		const account = await this.accountRepository.getOne(accountNum);
 
-		const accountOwner = await this.accountRepository.getOne(
-			transactionDto.accountNum
-		);
-		const password = await this.accountRepository.getOne(
-			transactionDto.accountNum
-		);
+		await this.validateAccount(account, user.userId, password);
 
-		if (accountOwner.user.userId != loginUser.userId) {
-			throw new UnauthorizedException();
-		}
+		await account.deposit(money)
 
-		if (
-			!password ||
-			(password &&
-				!(await bcrypt.compare(
-					transactionDto.password,
-					password.password
-				)))
-		)
-			throw new IncorrectPasswordException();
+		await this.accountRepository.updateBalance(account);
 
-		const result = this.accountRepository.updateBalance(
-			transactionDto.accountNum,
-			transactionDto.money
-		);
-
-		return this.transactionRepository.transaction(
-			await result,
+		return await this.transactionRepository.transaction(
+			account,
 			transactionDto
 		);
 	}
 
-	async withdraw(loginUser, transactionDto: TranscationDto) {
-		if (!loginUser?.userId) throw new UnauthorizedException();
+	async withdraw(user, transactionDto: TranscationDto) {
+		const { accountNum, password, money, briefs } = transactionDto;
+		const account = await this.accountRepository.getOne(accountNum);
 
-		const accountOwner = await this.accountRepository.getOne(
-			transactionDto.accountNum
-		);
-		const password = await this.accountRepository.getOne(
-			transactionDto.accountNum
-		);
+		await this.validateAccount(account, user.userId, password);
 
-		if (accountOwner.user.userId != loginUser.userId) {
+		await account.withdraw(money)
+
+		await this.accountRepository.updateBalance(account);
+
+		return await this.transactionRepository.transaction(
+			account,
+			transactionDto
+		);
+	}
+
+	async validateAccount(account: Account, userId: string, password: string): Promise<void> {
+		if (!account.isOwner(userId)) {
 			throw new UnauthorizedException();
 		}
 
-		if (
-			!password ||
-			(password &&
-				!(await bcrypt.compare(
-					transactionDto.password,
-					password.password
-				)))
-		)
-			throw new WrongPasswordException();
-		const result = this.accountRepository.updateBalance(
-			transactionDto.accountNum,
-			-1 * transactionDto.money
-		);
-
-		return this.transactionRepository.transaction(
-			await result,
-			transactionDto
-		);
+		if (!account.checkPassword(password)) {
+			throw new IncorrectPasswordException();
+		}
 	}
 }

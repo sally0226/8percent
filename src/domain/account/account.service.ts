@@ -26,8 +26,14 @@ export class AccountService {
 		if (!account) {
 			throw new NotFoundAccountException();
 		}
-		this.isOwner(account, user);
-		this.isCorrectPassword(account, password);
+		if (!await account.isOwner(user.userId)) {
+			throw new ForbiddenException();
+		};
+		
+		if (!await account.checkPassword(password)) {
+			throw new IncorrectPasswordException();
+		};
+
 		await this.accountRepository.deleteOne(accountNum);
 	}
 
@@ -50,16 +56,4 @@ export class AccountService {
 	private makeRandom(): string {
 		return Math.random().toString(10).substr(2, 14);
 	}
-
-    private isOwner(account, user) {
-        if (account.user.userId !== user.userId) {
-            throw new ForbiddenException();
-        }
-	}
-
-    private isCorrectPassword(account, password) {
-        if (!bcrypt.compare(password, account.password)) {
-			throw new IncorrectPasswordException();
-		}
-    }
 }

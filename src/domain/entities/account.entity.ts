@@ -8,9 +8,11 @@ import {
 	OneToMany,
 	PrimaryColumn
 } from "typeorm";
+import * as bcrypt from "bcrypt";
 import { BaseModel } from "./base/base.entity";
 import { History } from "./history.entity";
 import { User } from "./user.entity";
+import { LackOfBalanceExcetion } from "../transaction/exception/lackOfBalanceException";
 
 @Entity("account")
 export class Account extends BaseModel {
@@ -39,4 +41,26 @@ export class Account extends BaseModel {
 
 	@DeleteDateColumn()
 	deletedAt?: Date;
+
+	checkPassword(inputPassword: string) {
+		return bcrypt.compare(this.password, inputPassword)
+	}
+
+	isOwner(inputUserId: string) {
+		return this.user.userId === inputUserId;
+	}
+
+	deposit(income: number) {
+		const balance = this.balance.toString();
+		this.balance = parseFloat(balance) + income;
+	}
+
+	withdraw (income: number) {
+		const balance = this.balance.toString();
+		this.balance = parseFloat(balance) - income;
+		if(this.balance < 0) {
+			throw new LackOfBalanceExcetion()
+		}
+	}
+
 }
