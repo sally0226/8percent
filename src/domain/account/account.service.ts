@@ -1,8 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { ForbiddenException, Injectable } from "@nestjs/common";
 import { AccountRepository } from "./account.repository";
 import * as bcrypt from "bcrypt";
 import { JwtPayload } from "../auth/dto/jwtPayload.dto";
 import { CreateAccountRes } from "./dto/createAccountRes.dto";
+import { NotFoundAccountException } from "./exception/NotFoundAccountException";
+import { IncorrectPasswordException } from "./exception/IncorrectPasswordException";
 
 @Injectable()
 export class AccountService {
@@ -22,7 +24,7 @@ export class AccountService {
 	async delete(user: JwtPayload, accountNum: string, password: string): Promise<void> {
 		const account = await this.accountRepository.getOne(accountNum);
 		if (!account) {
-			throw new Error();
+			throw new NotFoundAccountException();
 		}
 		this.isOwner(account, user);
 		this.isCorrectPassword(account, password);
@@ -51,13 +53,13 @@ export class AccountService {
 
     private isOwner(account, user) {
         if (account.user.userId !== user.userId) {
-            throw new Error();
+            throw new ForbiddenException();
         }
 	}
 
     private isCorrectPassword(account, password) {
         if (!bcrypt.compare(password, account.password)) {
-			throw new Error();
+			throw new IncorrectPasswordException();
 		}
     }
 }
