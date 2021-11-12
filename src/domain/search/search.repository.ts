@@ -82,9 +82,6 @@ export class HistoryRepository extends Repository<History> {
 				}
 			);
 
-		historyQuery.orderBy("h.historyId", "DESC");
-		historyQuery.limit(query.limit);
-
 		if (query.after === undefined && query.before === undefined) {
 			const paginator = buildPaginator({
 				entity: History,
@@ -97,6 +94,7 @@ export class HistoryRepository extends Repository<History> {
 			});
 
 			const { data, cursor } = await paginator.paginate(historyQuery);
+			console.log(data, cursor);
 			return { data, cursor };
 		}
 
