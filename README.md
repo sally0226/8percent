@@ -321,6 +321,23 @@ test 폴더: e2e test 폴더
 #### 5. Search History API를 이용하여 조건에 따른 입출금내역 조회를 할 수 있습니다.
 ![image](https://user-images.githubusercontent.com/63238936/141578654-1a997973-733e-449c-98b2-e4284a8671dc.png)
 
+<br>
+<br>
+
+**입/출금 내역 조회 조건**
+
+1. accountNum[계좌번호] (필수)  
+2. type[입/출금 유형] (필수) 'all' => 전체 검색, 'deposit' => 입금 내역 검색, 'withdraw' => 출금 내역 검색  
+3. startDate[시작 범위] startDate는 endDate와 같이 사용하거나 아예 같이 사용하지 않아야 합니다. 어느 한쪽만 값이 있는 경우는 오류가 납니다.   
+4. endDate [종료 범위]  
+5. briefs [적요]  
+6. minAmount [최저 금액] minAmount는 maxAmount와 같이 사용하거나 아예 같이 사용하지 않아야 합니다. 어느 한쪽만 값이 있는 경우는 오류가 납니다.   
+7. maxAmount [최고 금액]  
+8. after [다음 페이지 커서] 조회 결과로 나오는 커서를 해당 쿼리에 작성해야 합니다.  
+9. before [이전 페이지 커서]  
+10. limit [페이지 단위] 아무것도 작성하지 않을 시 10개를 가져오게 됩니다.  
+
+
 ## 🍭 TIL 주소
 
 | 김바다 | 김효민 | 원동균 | 이나영 | 장희진 | 조재복 |
