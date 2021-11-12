@@ -14,7 +14,7 @@
 | ---------------------------------------- | --------- |
 | [김바다](https://github.com/sally0226)   | 회원가입, 로그인 API 기능 구현, 코드 리팩토링, Seeding 관련 작업 |
 | [김효민](https://github.com/luckyhyom)   | 계좌 생성/삭제 API 기능 구현, 코드 리팩토링, AWS 배포 |
-| [원동균](https://github.com/WonDongGyun) | 입/출금 내역 조회 API 기능 구현 및 테스트, 페이징 성능 향상 작업, 프로젝트  |
+| [원동균](https://github.com/WonDongGyun) | 입/출금 내역 조회 API 기능 구현 및 테스트, 페이징 성능 향상 작업, 프로젝트 환경 설정 |
 | [이나영](https://github.com/bokiri409)   | 입/출금 거래 API 기능 구현, 코드 리팩토링, AWS 배포 |
 | [장희진](https://github.com/heejin99)    | 계좌 생성/삭제 API 기능 구현, Seeding 관련 작업 |
 | [조재복](https://github.com/ildang100)   |     -     |
@@ -32,22 +32,22 @@
 1. 상단의 Code 버튼을 눌러 경로를 복사한 후 클론 받습니다.
 
 ```
-$ git clone https://github.com/preOnboarding-Team13/Assignment-3-redbrick.git
+$ git clone https://github.com/preOnboarding-Team13/Assignment-4-8percent.git
 ```
 
-1. 패키지를 설치합니다.
+2. 패키지를 설치합니다.
 
 ```
 $ npm install
 ```
 
-1. 서버를 실행해 줍니다.
+3. 서버를 실행해 줍니다.
 
 ```
 $ npm start
 ```
 
-1. 정해진 API에 접근하여 서비스를 이용합니다.
+4. 정해진 API에 접근하여 서비스를 이용합니다.
 
 
 
@@ -162,7 +162,85 @@ $ npm start
 
 ## 📂 폴더 구조
 
+6개의 domain을 생성했습니다.
+
+- account
+- auth
+- entities
+- search
+- transaction
+- user
+
+global 폴더: Error Handler 폴더
+
+test 폴더: e2e test 폴더
+
 ```
+📁 src
+├── 📁 domain
+│  ├── 📂 account
+│  │  ├── 📂 dto
+│  │  │  ├── 📄 createAccountReq.dto.ts
+│  │  │  ├── 📄 createAccountRes.dto.ts
+│  │  │  └── 📄 deleteAccountReq.dto.ts
+│  │  ├── 📂 exception
+│  │  │  ├── 📄 IncorrectPasswordException.ts
+│  │  │  └── 📄 NotFoundAccountException.dto.ts
+│  │  ├── 📄 account.controller.ts
+│  │  ├── 📄 account.module.ts
+│  │  ├── 📄 account.repository.ts
+│  │  ├── 📄 account.service.spec.ts
+│  │  ├── 📄 account.service.ts
+│  ├── 📂 search
+│  │  ├── ...
+│  ├── 📂 transaction
+│  │  ├── ...
+│  ├── 📂 user
+│  │  ├── ...
+│  ├── 📂 auth
+│  │  ├── 📂 dto
+│  │  │  └── 📄 jwtPayload.dto.ts
+│  │  ├── 📂 guards
+│  │  │  ├── 📄 jwtGuard.guard.ts
+│  │  │  └── 📄 localAuthGuard.guard.ts
+│  │  ├── 📄 auth.jwtStrategy.ts
+│  │  ├── 📄 auth.localStrategy.ts
+│  │  ├── 📄 auth.module.ts
+│  │  ├── 📄 auth.service.spec.ts
+│  │  ├── 📄 auth.service.ts
+│  │  └── 📄 user.decorator.ts
+│  ├── 📂 entities
+│  │  ├── 📂 base
+│  │  │  └── 📄 base.entity.ts
+│  │  ├── 📄 account.entity.ts
+│  │  ├── 📄 history.entity.ts
+│  │  └── 📄 user.entity.ts
+├── 📂 global
+│  ├── 📂 common
+│  │  ├── 📄 CommonResponse.ts
+│  │  ├── 📄 ErrorCode.ts
+│  │  └── 📄 ErrorResponse.ts
+│  ├── 📂 custom
+│  │  ├── 📂 decorator
+│  │  │  ├── 📂 exception
+│  │  │  │  ├── 📄 SearchAmountException.ts
+│  │  │  │  ├── 📄 SearchCursorException.ts
+│  │  │  │  └── 📄 SearchDateException.ts
+│  │  │  └── 📄 historyDecorator.custom.ts
+│  ├── 📂 exception
+│  │  └── 📄 ErrorHandler.ts
+│  ├── 📂 swagger
+│  │  └── 📄 setSwagger.swagger.ts
+📁 test
+├── 📄 app.e2e-spec.ts
+└── 📄 jest-e2e.json
+📄 .env
+📄 nest-cli.json
+📄 package.json
+📄 package-lock.json
+📄 tsconfig.json
+📄 tsconfig.build.json
+📄 README.md
 ```
 
 
@@ -214,7 +292,7 @@ $ npm start
 
 ## 🐾 API
 
-[Postman 주소-링크]()
+[Postman 주소-링크](https://documenter.getpostman.com/view/15410333/UVC8Ckor)
 
 
 
