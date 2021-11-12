@@ -5,6 +5,7 @@ import {
 	NotFoundException,
 	UnauthorizedException
 } from "@nestjs/common";
+import { LackOfBalanceExcetion } from "src/domain/transaction/exception/lackOfBalanceException";
 import { DuplicatedUserException } from "src/domain/user/exception/DuplicatedUserException";
 import { UnauthorizedUserException } from "src/domain/user/exception/UnauthorizedUserException";
 import { ErrorCode } from "../common/ErrorCode";
@@ -14,7 +15,7 @@ export class ExceptionHandler implements ExceptionFilter {
 	catch(exception: unknown, host: ArgumentsHost) {
 		const ctx = host.switchToHttp();
 		const response = ctx.getResponse();
-
+		// console.log(exception);
 		if (exception instanceof BadRequestException) {
 			const status = exception.getStatus();
 			response
@@ -40,6 +41,11 @@ export class ExceptionHandler implements ExceptionFilter {
 			response
 				.status(status)
 				.json(ErrorResponse.response(ErrorCode.UnauthorizedUser));
+		} else if (exception instanceof LackOfBalanceExcetion) {
+			const status = exception.getStatus();
+			response
+				.status(status)
+				.json(ErrorResponse.response(ErrorCode.LackOfBalance));
 		} else {
 			// 에러 처리가 완료되면 다른 오류로 교체해주세요.
 			console.log(exception);

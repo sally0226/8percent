@@ -11,6 +11,7 @@ export class ErrorCode {
 	);
 	static readonly NewError = new ErrorCode(404, "예상치 못한 에러입니다.");
 	static readonly DuplicatedUser = new ErrorCode(409, "중복된 아이디입니다.");
+	static readonly LackOfBalance = new ErrorCode(400, "잔액이 부족합니다.");
 	constructor(
 		private readonly statusCode: number,
 		public readonly message: string
