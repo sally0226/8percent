@@ -42,8 +42,8 @@ export class Account extends BaseModel {
 	@DeleteDateColumn()
 	deletedAt?: Date;
 
-	checkPassword(inputPassword: string) {
-		return bcrypt.compare(this.password, inputPassword)
+	async checkPassword(inputPassword: string) {
+		return await bcrypt.compare(inputPassword, this.password)
 	}
 
 	isOwner(inputUserId: string) {

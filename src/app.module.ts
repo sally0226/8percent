@@ -14,27 +14,27 @@ import { TransactionModule } from "./domain/transaction/transaction.module";
 
 @Module({
 	imports: [
-		TypeOrmModule.forRoot({
-			type: "sqlite",
-			database: ":memory:",
-			entities: [Account, History, User],
-			synchronize: true,
-			keepConnectionAlive: true
-		}),
-		ConfigModule.forRoot({
-			isGlobal: true
-		}),
 		// TypeOrmModule.forRoot({
-		// 	type: "mysql",
-		// 	host: process.env.DB_HOST,
-		// 	port: 3306,
-		// 	username: process.env.DB_USER,
-		// 	password: process.env.DB_PASSWORD,
-		// 	database: process.env.DB_DATABASE,
-		// 	entities: [User, History, Account],
+		// 	type: "sqlite",
+		// 	database: ":memory:",
+		// 	entities: [Account, History, User],
 		// 	synchronize: true,
 		// 	keepConnectionAlive: true
 		// }),
+		ConfigModule.forRoot({
+			isGlobal: true
+		}),
+		TypeOrmModule.forRoot({
+			type: "mysql",
+			host: process.env.DB_HOST,
+			port: 3306,
+			username: process.env.DB_USER,
+			password: process.env.DB_PASSWORD,
+			database: process.env.DB_DATABASE,
+			entities: [User, History, Account],
+			synchronize: true,
+			keepConnectionAlive: true
+		}),
 		MorganModule,
 		SearchModule,
 		AccountModule,

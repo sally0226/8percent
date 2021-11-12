@@ -37,8 +37,8 @@ export class AccountService {
 		await this.accountRepository.deleteOne(accountNum);
 	}
 
-	private hash(password: string): Promise<string> {
-		return bcrypt.hash(password, 10);
+	private async hash(password: string): Promise<string> {
+		return await bcrypt.hash(password, 10);
 	}
 
 	private async createAccountNumber(): Promise<string> {
