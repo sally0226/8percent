@@ -12,18 +12,18 @@
 
 | 이름                                     | 담당 기능 |
 | ---------------------------------------- | --------- |
-| [김바다](https://github.com/sally0226)   |           |
-| [김효민](https://github.com/luckyhyom)   |           |
-| [원동균](https://github.com/WonDongGyun) |           |
-| [이나영](https://github.com/bokiri409)   |           |
-| [장희진](https://github.com/heejin99)    |           |
-| [조재복](https://github.com/ildang100)   |           |
+| [김바다](https://github.com/sally0226)   | 회원가입, 로그인 API 기능 구현, 코드 리팩토링, Seeding 관련 작업 |
+| [김효민](https://github.com/luckyhyom)   | 계좌 생성/삭제 API 기능 구현, 코드 리팩토링, AWS 배포 |
+| [원동균](https://github.com/WonDongGyun) | 입/출금 내역 조회 API 기능 구현 및 테스트, 페이징 성능 향상 작업, 프로젝트  |
+| [이나영](https://github.com/bokiri409)   | 입/출금 거래 API 기능 구현, 코드 리팩토링, AWS 배포 |
+| [장희진](https://github.com/heejin99)    | 계좌 생성/삭제 API 기능 구현, Seeding 관련 작업 |
+| [조재복](https://github.com/ildang100)   |     -     |
 
 
 
 ## 🌎 배포
 
-주소 : 
+주소 : http://3.38.126.250:3000/
 
 
 
@@ -173,38 +173,38 @@ $ npm start
 
 - User
 
-  [ ]  회원가입
+  ✅  회원가입
 
-  [ ]  로그인
+  ✅  로그인
 
 - 계좌 관리
 
-  [ ]  계좌 생성
+  ✅  계좌 생성
 
-  [ ]  계좌 삭제
+  ✅  계좌 삭제
 
 - 거래 및 조회
 
-  [ ]  거래내역 조회 API
+  ✅  거래내역 조회 API
 
   - 입금/ 출금/ 전체 내역 조회
   - 시작날짜 ~ 종료날짜 검색
   - 최소금액 ~ 최대금액 검색
   - 적요 검색
 
-  [ ]  입금 API
+  ✅  입금 API
 
-  [ ]  출금 API
+  ✅  출금 API
 
 - 테스트 코드
 
-  [ ]  Unit Test
+  ✅  Unit Test
 
-  [ ]  Functional Test  (입금, 조회, 출금에 대한 시나리오 테스트)
+  ✅  Functional Test  (입금, 조회, 출금에 대한 시나리오 테스트)
 
 - 추가 고려 사항
 
-  [ ]  거래 내역이 1억건 이상일 때에 대한 고려
+  ✅  거래 내역이 1억건 이상일 때에 대한 고려
 
 #### 2) 상세 내용
 
