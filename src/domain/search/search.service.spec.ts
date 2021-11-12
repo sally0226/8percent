@@ -90,7 +90,7 @@ describe("SearchService", () => {
 			expect(result).toEqual(data);
 		});
 
-		it("SearchService getHistory 테스트 (성공)", async () => {
+		it("SearchService getHistory 테스트 (NotFoundAccountException)", async () => {
 			// given
 			try {
 				mockHistoryRepository.getHistory.mockResolvedValue(data);
