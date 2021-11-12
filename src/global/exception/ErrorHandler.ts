@@ -14,7 +14,7 @@ export class ExceptionHandler implements ExceptionFilter {
 	catch(exception: unknown, host: ArgumentsHost) {
 		const ctx = host.switchToHttp();
 		const response = ctx.getResponse();
-
+		console.log(exception);
 		if (exception instanceof BadRequestException) {
 			const status = exception.getStatus();
 			response
