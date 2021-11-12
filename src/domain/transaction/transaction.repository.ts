@@ -10,7 +10,7 @@ export class TransactionRepository extends Repository<History> {
 		history.type = true;
 		history.amount = transactionDto.money;
 		history.historyBalance = result.balance;
-		history.account = result.account;
+		history.account = result;
 		history.briefs = transactionDto.briefs;
 
 		return await this.save(history);
