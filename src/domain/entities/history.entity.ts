@@ -3,6 +3,7 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	JoinColumn,
 	ManyToOne,
 	PrimaryGeneratedColumn
 } from "typeorm";
@@ -33,6 +34,7 @@ export class History {
 	@ManyToOne(() => Account, (account) => account.history, {
 		onDelete: "CASCADE"
 	})
+	@JoinColumn([{ name: "accountNum", referencedColumnName: "accountNum" }])
 	account?: Account;
 
 	@CreateDateColumn({ type: "timestamp" })
