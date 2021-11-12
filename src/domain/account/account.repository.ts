@@ -20,14 +20,12 @@ export class AccountRepository extends Repository<Account> {
 	async updateBalance(accountNum, money: number) {
 		// 계좌 잔액
 		const account = await this.getOne(accountNum);
-		const balance = Math.floor(account.balance) + money;
+		const balance = Math.floor(await account.balance) + money;
 		if (balance < 0) {
-			console.log("잔액부족");
 			account.balance = balance;
 			throw new LackOfBalanceExcetion();
 		}
 
-		// await this.update({ accountNum: accountNum }, balance);
 		await this.createQueryBuilder()
 			.update()
 			.set({ balance: balance })
@@ -46,7 +44,12 @@ export class AccountRepository extends Repository<Account> {
 
 	async getOne(accountNum: string): Promise<Account> {
 		return await this.createQueryBuilder("account")
-			.select(["account.password", "user.userId", "account.balance"])
+			.select([
+				"account.password",
+				"user.userId",
+				"account.balance",
+				"account.accountNum"
+			])
 			.leftJoin("account.user", "user")
 			.where("account.accountNum =:accountNum", { accountNum })
 			.getOne();

@@ -6,6 +6,7 @@ import { WrongPasswordException } from "./exception/WrongPasswordException";
 import { TransactionRepository } from "./transaction.repository";
 import * as bcrypt from "bcrypt";
 import { IncorrectPasswordException } from "../account/exception/IncorrectPasswordException";
+import { ApiQuery } from "@nestjs/swagger";
 
 @Injectable()
 export class TransactionService {
@@ -17,15 +18,17 @@ export class TransactionService {
 
 	async deposit(loginUser, transactionDto: TranscationDto) {
 		if (!loginUser?.userId) throw new UnauthorizedException();
-		// const accountOwner = await this.accountRepository.get(
-		// 	transactionDto.accountNum
-		// );
-		// if (loginUser.userId != accountOwner.user.userId)
-		// 	throw new UnauthorizedException();
 
+		const accountOwner = await this.accountRepository.getOne(
+			transactionDto.accountNum
+		);
 		const password = await this.accountRepository.getOne(
 			transactionDto.accountNum
 		);
+
+		if (accountOwner.user.userId != loginUser.userId) {
+			throw new UnauthorizedException();
+		}
 
 		if (
 			!password ||
@@ -51,9 +54,16 @@ export class TransactionService {
 	async withdraw(loginUser, transactionDto: TranscationDto) {
 		if (!loginUser?.userId) throw new UnauthorizedException();
 
+		const accountOwner = await this.accountRepository.getOne(
+			transactionDto.accountNum
+		);
 		const password = await this.accountRepository.getOne(
 			transactionDto.accountNum
 		);
+
+		if (accountOwner.user.userId != loginUser.userId) {
+			throw new UnauthorizedException();
+		}
 
 		if (
 			!password ||
