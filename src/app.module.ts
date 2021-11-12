@@ -29,7 +29,7 @@ import { AuthModule } from "./domain/auth/auth.module";
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_DATABASE,
 			entities: [User, History, Account],
-			synchronize: true,
+			// synchronize: true,
 			keepConnectionAlive: true
 		}),
 		MorganModule,
