@@ -13,6 +13,9 @@ import { DuplicatedUserException } from "src/domain/user/exception/DuplicatedUse
 import { UnauthorizedUserException } from "src/domain/user/exception/UnauthorizedUserException";
 import { ErrorCode } from "../common/ErrorCode";
 import { ErrorResponse } from "../common/ErrorResponse";
+import { SearchCursorException } from "../custom/decorator/exception/SearchCursorException";
+import { SearchAmountException } from "../custom/decorator/exception/SearchAmountException";
+import { SearchDateException } from "../custom/decorator/exception/SearchDateException";
 
 export class ExceptionHandler implements ExceptionFilter {
 	catch(exception: unknown, host: ArgumentsHost) {
@@ -65,6 +68,21 @@ export class ExceptionHandler implements ExceptionFilter {
 			response
 				.status(status)
 				.json(ErrorResponse.response(ErrorCode.IncorrectPassword));
+		} else if (exception instanceof SearchCursorException) {
+			const status = exception.getStatus();
+			response
+				.status(status)
+				.json(ErrorResponse.response(ErrorCode.SearchCursor));
+		} else if (exception instanceof SearchAmountException) {
+			const status = exception.getStatus();
+			response
+				.status(status)
+				.json(ErrorResponse.response(ErrorCode.SearchAmount));
+		} else if (exception instanceof SearchDateException) {
+			const status = exception.getStatus();
+			response
+				.status(status)
+				.json(ErrorResponse.response(ErrorCode.SearchDate));
 		} else {
 			// 에러 처리가 완료되면 다른 오류로 교체해주세요.
 			console.log(exception);
