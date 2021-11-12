@@ -316,7 +316,7 @@ test 폴더: e2e test 폴더
 
 #### 4. Deposit, Withdraw Mondy API를 이용하여 입금, 출금을 할 수 있습니다.
 
-![image-20211113061326016](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211113061326016.png)
+![image](https://user-images.githubusercontent.com/43634786/141538649-334596b8-eac6-4af1-b78b-420f4d11e78e.png)
 
 #### 5. Search History API를 이용하여 조건에 따른 입출금내역 조회를 할 수 있습니다.
 
