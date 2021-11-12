@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import {
 	Column,
+	DeleteDateColumn,
 	Entity,
 	JoinColumn,
 	ManyToOne,
@@ -35,4 +36,7 @@ export class Account extends BaseModel {
 		onDelete: "CASCADE"
 	})
 	history?: History[];
+
+	@DeleteDateColumn()
+	deletedAt?: Date;
 }
