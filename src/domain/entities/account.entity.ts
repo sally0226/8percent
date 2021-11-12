@@ -27,6 +27,10 @@ export class Account extends BaseModel {
 	@JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
 	user?: User;
 
+	@Column("varchar", { length: 200 })
+	@ApiProperty({ description: "계좌 비밀번호" })
+	password: string;
+
 	@OneToMany(() => History, (history) => history.account, {
 		onDelete: "CASCADE"
 	})
