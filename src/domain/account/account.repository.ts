@@ -1,6 +1,5 @@
 import { EntityRepository, Repository } from "typeorm";
 import { Account } from "../entities/account.entity";
-import { LackOfBalanceExcetion } from "../transaction/exception/lackOfBalanceException";
 
 @EntityRepository(Account)
 export class AccountRepository extends Repository<Account> {

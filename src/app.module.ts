@@ -10,6 +10,7 @@ import { SearchModule } from "./domain/search/search.module";
 import { AccountModule } from "./domain/account/account.module";
 import { UserModule } from "./domain/user/user.module";
 import { AuthModule } from "./domain/auth/auth.module";
+import { TransactionModule } from "./domain/transaction/transaction.module";
 
 @Module({
 	imports: [
@@ -36,6 +37,7 @@ import { AuthModule } from "./domain/auth/auth.module";
 		MorganModule,
 		SearchModule,
 		AccountModule,
+		TransactionModule,
 		UserModule,
 		AuthModule
 	],

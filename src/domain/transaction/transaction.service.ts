@@ -2,14 +2,9 @@ import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { AccountRepository } from "../account/account.repository";
 import { UserRepository } from "../user/user.repository";
 import { TranscationDto } from "./dto/transaction.dto";
-import { WrongPasswordException } from "./exception/WrongPasswordException";
 import { TransactionRepository } from "./transaction.repository";
-import * as bcrypt from "bcrypt";
 import { IncorrectPasswordException } from "../account/exception/IncorrectPasswordException";
-import { ApiQuery } from "@nestjs/swagger";
-import { check } from "prettier";
 import { Account } from "../entities/account.entity";
-import { LackOfBalanceExcetion } from "./exception/lackOfBalanceException";
 
 @Injectable()
 export class TransactionService {

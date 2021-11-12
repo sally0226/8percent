@@ -6,7 +6,7 @@ import {
 	NotFoundException,
 	UnauthorizedException
 } from "@nestjs/common";
-import { LackOfBalanceExcetion } from "src/domain/transaction/exception/lackOfBalanceException";
+import { LackOfBalanceExcetion } from "src/domain/transaction/exception/LackOfBalanceException";
 import { IncorrectPasswordException } from "src/domain/account/exception/IncorrectPasswordException";
 import { NotFoundAccountException } from "src/domain/account/exception/NotFoundAccountException";
 import { DuplicatedUserException } from "src/domain/user/exception/DuplicatedUserException";
