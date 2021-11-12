@@ -15,12 +15,10 @@ export class UserService {
 		const findUser = await this.userRepository.findUser(
 			createUserDto.userId
 		);
-		console.log(findUser);
 		if (findUser) {
 			throw new DuplicatedUserException();
 		}
 		const user = await this.userRepository.createUser(createUserDto);
-		console.log(user);
 		return this.authService.makeToken(user);
 	}
 }
