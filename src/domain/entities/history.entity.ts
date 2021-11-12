@@ -3,6 +3,7 @@ import {
 	Column,
 	CreateDateColumn,
 	Entity,
+	JoinColumn,
 	ManyToOne,
 	PrimaryGeneratedColumn
 } from "typeorm";
@@ -26,9 +27,14 @@ export class History {
 	@ApiProperty({ description: "거래후 잔액" })
 	historyBalance!: number;
 
+	@Column("varchar", { length: 10, nullable: false })
+	@ApiProperty({ description: "적요" })
+	briefs!: string;
+
 	@ManyToOne(() => Account, (account) => account.history, {
 		onDelete: "CASCADE"
 	})
+	@JoinColumn([{ name: "accountNum", referencedColumnName: "accountNum" }])
 	account?: Account;
 
 	@CreateDateColumn({ type: "timestamp" })

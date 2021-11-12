@@ -1,5 +1,12 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import {
+	Column,
+	Entity,
+	JoinColumn,
+	ManyToOne,
+	OneToMany,
+	PrimaryColumn
+} from "typeorm";
 import { BaseModel } from "./base/base.entity";
 import { History } from "./history.entity";
 import { User } from "./user.entity";
@@ -17,6 +24,7 @@ export class Account extends BaseModel {
 	@ManyToOne(() => User, (user) => user.account, {
 		onDelete: "CASCADE"
 	})
+	@JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
 	user?: User;
 
 	@Column("varchar", { length: 200 })
