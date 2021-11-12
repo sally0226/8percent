@@ -28,8 +28,8 @@ import { SearchModule } from "./domain/search/search.module";
 			password: process.env.DB_PASSWORD,
 			database: process.env.DB_DATABASE,
 			entities: [User, History, Account],
-			logging: true
-			// synchronize: true
+			logging: true,
+			synchronize: true
 		}),
 		MorganModule,
 		SearchModule

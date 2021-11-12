@@ -15,7 +15,7 @@ export class HistoryRepository extends Repository<History> {
 		type: string,
 		startDate: string,
 		endDate: string,
-		brief: string,
+		briefs: string,
 		minAmount: number,
 		maxAmount: number,
 		pageNum: number
@@ -25,7 +25,7 @@ export class HistoryRepository extends Repository<History> {
 			.select("h.type", "거래종류")
 			.addSelect("h.amount", "사용 금액")
 			.addSelect("h.historyBalance", "거래후 잔액")
-			.addSelect("h.brief", "적요")
+			.addSelect("h.briefs", "적요")
 			.addSelect("h.createdAt", "거래일시")
 			.innerJoin(Account, "a", "a.accountNum = h.accountNum");
 		if (type === typeOptions.deposit) historyQuery.where("h.type = TRUE");
@@ -43,8 +43,8 @@ export class HistoryRepository extends Repository<History> {
 					endDate: endDate
 				}
 			);
-		if (brief != undefined)
-			historyQuery.andWhere("h.brief = :brief", { brief: brief });
+		if (briefs != undefined)
+			historyQuery.andWhere("h.briefs = :briefs", { briefs: briefs });
 		if (minAmount != 0 && maxAmount != 0)
 			historyQuery.andWhere(
 				"h.createdAt BETWEEN :minAmount AND :maxAmount",

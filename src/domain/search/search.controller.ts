@@ -17,7 +17,7 @@ export class SearchController {
 		@Query("type") type: string,
 		@Query("startDate") startDate: string,
 		@Query("endDate") endDate: string,
-		@Query("brief") brief: string,
+		@Query("briefs") briefs: string,
 		@Query("minAmount") minAmount: number,
 		@Query("maxAmount") maxAmount: number,
 		@Query("pageNum") pageNum: number
@@ -30,7 +30,7 @@ export class SearchController {
 			type,
 			startDate,
 			endDate,
-			brief,
+			briefs,
 			minAmount,
 			maxAmount,
 			pageNum
@@ -42,7 +42,7 @@ export class SearchController {
 			type,
 			startDate,
 			endDate,
-			brief,
+			briefs,
 			minAmount,
 			maxAmount,
 			pageNum

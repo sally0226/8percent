@@ -9,7 +9,7 @@ export class SearchService {
 		type: string,
 		startDate: string,
 		endDate: string,
-		brief: string,
+		briefs: string,
 		minAmount: number,
 		maxAmount: number,
 		pageNum: number
@@ -20,7 +20,7 @@ export class SearchService {
 			type,
 			startDate,
 			endDate,
-			brief,
+			briefs,
 			minAmount,
 			maxAmount,
 			pageNum
