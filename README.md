@@ -278,7 +278,7 @@ test 폴더: e2e test 폴더
 
   ✅  Unit Test
 
-   [ ]  Functional Test  (입금, 조회, 출금에 대한 시나리오 테스트)
+  ✖️  Functional Test  (입금, 조회, 출금에 대한 시나리오 테스트)
 
 - 추가 고려 사항
 
@@ -288,7 +288,11 @@ test 폴더: e2e test 폴더
 
 #### [DB설계 관련 논의사항](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/DB%EC%84%A4%EA%B3%84-%ED%9A%8C%EC%9D%98-%EB%82%B4%EC%9A%A9) 
 
-#### [typeorm에 Seed 추가](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/typeorm%EC%97%90-Seed-%EC%B6%94%EA%B0%80) 
+#### [TypeOrm에 Seed 추가](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/typeorm%EC%97%90-Seed-%EC%B6%94%EA%B0%80) 
+
+#### [TypeOrm 페이지 성능 향상 도전기](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/TypeOrm-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81-%EB%8F%84%EC%A0%84%EA%B8%B0)
+
+
 
 
 
@@ -302,9 +306,21 @@ test 폴더: e2e test 폴더
 
 #### 1. 위의 Postman 주소 링크를 클릭하여 Postman으로 들어갑니다.
 
-#### 2. 서버 주소가 알맞은지 확인합니다.
+#### 2. Create User, Login API를 이용하여 회원가입과 로그인을 진행할 수 있습니다.
 
+![image](https://user-images.githubusercontent.com/43634786/141534046-8e50e9ee-556d-4a99-b625-e7701556a86b.png)
 
+#### 3. Create, Delete Account API를 이용하여 계좌 생성, 삭제를 진행할 수 있습니다. 
+
+![image](https://user-images.githubusercontent.com/43634786/141534969-648289e3-1404-488d-a5b9-1264319f0fa9.png)
+
+#### 4. Deposit, Withdraw Mondy API를 이용하여 입금, 출금을 할 수 있습니다.
+
+![image-20211113061326016](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211113061326016.png)
+
+#### 5. Search History API를 이용하여 조건에 따른 입출금내역 조회를 할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/43634786/141538055-67a49212-8200-436b-8877-6f06ea32ca5c.png)
 
 ## 🍭 TIL 주소
 
