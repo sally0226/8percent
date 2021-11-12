@@ -28,7 +28,7 @@ export class AccountService {
 		}
 		this.isOwner(account, user);
 		this.isCorrectPassword(account, password);
-		await this.accountRepository.delete(accountNum);
+		await this.accountRepository.deleteOne(accountNum);
 	}
 
 	private hash(password: string): Promise<string> {
