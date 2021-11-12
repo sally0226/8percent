@@ -5,6 +5,10 @@ export class TranscationDto {
 	@IsNotEmpty()
 	accountNum!: string;
 
+	@IsString()
+	@IsNotEmpty()
+	password!: string;
+
 	@IsNumber()
 	@IsNotEmpty()
 	money!: number;

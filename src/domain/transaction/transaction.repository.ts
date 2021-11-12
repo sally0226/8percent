@@ -13,7 +13,6 @@ export class TransactionRepository extends Repository<History> {
 		history.account = result.account;
 		history.briefs = transactionDto.briefs;
 
-		console.log(history);
 		return await this.save(history);
 	}
 }

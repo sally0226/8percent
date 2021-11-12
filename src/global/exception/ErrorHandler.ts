@@ -6,6 +6,7 @@ import {
 	UnauthorizedException
 } from "@nestjs/common";
 import { LackOfBalanceExcetion } from "src/domain/transaction/exception/lackOfBalanceException";
+import { WrongPasswordException } from "src/domain/transaction/exception/WrongPasswordException";
 import { DuplicatedUserException } from "src/domain/user/exception/DuplicatedUserException";
 import { UnauthorizedUserException } from "src/domain/user/exception/UnauthorizedUserException";
 import { ErrorCode } from "../common/ErrorCode";
@@ -46,6 +47,11 @@ export class ExceptionHandler implements ExceptionFilter {
 			response
 				.status(status)
 				.json(ErrorResponse.response(ErrorCode.LackOfBalance));
+		} else if (exception instanceof WrongPasswordException) {
+			const status = exception.getStatus();
+			response
+				.status(status)
+				.json(ErrorResponse.response(ErrorCode.WrongPassword));
 		} else {
 			// 에러 처리가 완료되면 다른 오류로 교체해주세요.
 			console.log(exception);

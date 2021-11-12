@@ -1,24 +1,47 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { AccountRepository } from "../account/account.repository";
 import { Account } from "../entities/account.entity";
 import { History } from "../entities/history.entity";
+import { UserRepository } from "../user/user.repository";
 import { TranscationDto } from "./dto/transaction.dto";
+import { WrongPasswordException } from "./exception/WrongPasswordException";
 import { TransactionRepository } from "./transaction.repository";
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class TransactionService {
 	constructor(
+		private readonly userRepository: UserRepository,
 		private readonly transactionRepository: TransactionRepository,
 		private readonly accountRepository: AccountRepository
 	) {}
 
-	async deposit(transactionDto: TranscationDto) {
+	async deposit(loginUser, transactionDto: TranscationDto) {
+		if (!loginUser?.userId) throw new UnauthorizedException();
+		// const accountOwner = await this.accountRepository.get(
+		// 	transactionDto.accountNum
+		// );
+		// if (loginUser.userId != accountOwner.user.userId)
+		// 	throw new UnauthorizedException();
+
+		const password = await this.accountRepository.get(
+			transactionDto.accountNum
+		);
+
+		if (
+			!password ||
+			(password &&
+				!(await bcrypt.compare(
+					transactionDto.password,
+					password.password
+				)))
+		)
+			throw new WrongPasswordException();
+
 		const result = this.accountRepository.updateBalance(
 			transactionDto.accountNum,
 			transactionDto.money
 		);
-		// console.log((await result).account, (await result).balance);
-		// const account = this.accountRepository.get(transactionDto.accountNum);
 
 		return this.transactionRepository.transaction(
 			await result,
@@ -26,7 +49,22 @@ export class TransactionService {
 		);
 	}
 
-	async withdraw(transactionDto: TranscationDto) {
+	async withdraw(loginUser, transactionDto: TranscationDto) {
+		if (!loginUser?.userId) throw new UnauthorizedException();
+
+		const password = await this.accountRepository.get(
+			transactionDto.accountNum
+		);
+
+		if (
+			!password ||
+			(password &&
+				!(await bcrypt.compare(
+					transactionDto.password,
+					password.password
+				)))
+		)
+			throw new WrongPasswordException();
 		const result = this.accountRepository.updateBalance(
 			transactionDto.accountNum,
 			-1 * transactionDto.money
