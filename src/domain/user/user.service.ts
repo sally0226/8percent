@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { AuthService } from "../auth/auth.service";
 import { CreateUserDto } from "./dto/createUser.dto";
+import { DuplicatedUserException } from "./exception/DuplicatedUserException";
 import { UserRepository } from "./user.repository";
 
 @Injectable()
@@ -16,7 +17,7 @@ export class UserService {
 		);
 		console.log(findUser);
 		if (findUser) {
-			throw new Error();
+			throw new DuplicatedUserException();
 		}
 		const user = await this.userRepository.createUser(createUserDto);
 		console.log(user);

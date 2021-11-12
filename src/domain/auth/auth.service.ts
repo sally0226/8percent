@@ -3,6 +3,7 @@ import { JwtService } from "@nestjs/jwt";
 import { UserRepository } from "../user/user.repository";
 import * as bcrypt from "bcrypt";
 import { User } from "../entities/user.entity";
+import { UnauthorizedUserException } from "../user/exception/UnauthorizedUserException";
 
 @Injectable()
 export class AuthService {
@@ -13,19 +14,16 @@ export class AuthService {
 
 	async validateUser(userId: string, password: string) {
 		const user = await this.userRepository.findUser(userId);
-
 		if (
 			!user ||
 			(user && !(await bcrypt.compare(password, user.password)))
 		) {
-			throw new Error(); // UserUnauthorizedException
+			throw new UnauthorizedUserException();
 		}
-
 		return user;
 	}
 
 	makeToken(user: User) {
-		console.log(user);
 		const payload = { userId: user.userId, userName: user.userName };
 		return this.jwtService.sign(payload);
 	}
