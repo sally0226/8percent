@@ -26,6 +26,10 @@ export class History {
 	@ApiProperty({ description: "거래후 잔액" })
 	historyBalance!: number;
 
+	@Column("varchar", { length: 10, nullable: false })
+	@ApiProperty({ description: "적요" })
+	briefs!: string;
+
 	@ManyToOne(() => Account, (account) => account.history, {
 		onDelete: "CASCADE"
 	})
