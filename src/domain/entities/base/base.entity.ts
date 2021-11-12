@@ -2,11 +2,11 @@ import { ApiProperty } from "@nestjs/swagger";
 import { CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 export abstract class BaseModel {
-	@CreateDateColumn({ type: "timestamp" })
+	@CreateDateColumn()
 	@ApiProperty({ description: "생성 날짜" })
 	createdAt!: Date;
 
-	@UpdateDateColumn({ type: "timestamp" })
+	@UpdateDateColumn()
 	@ApiProperty({ description: "수정 날짜" })
 	updatedAt!: Date;
 }

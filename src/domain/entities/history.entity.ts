@@ -37,6 +37,6 @@ export class History {
 	@JoinColumn([{ name: "accountNum", referencedColumnName: "accountNum" }])
 	account?: Account;
 
-	@CreateDateColumn({ type: "timestamp" })
+	@CreateDateColumn()
 	createdAt!: Date;
 }
