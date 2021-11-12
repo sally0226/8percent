@@ -247,7 +247,7 @@ test 폴더: e2e test 폴더
 
 ## 🔗 구현 기능
 
-#### 1) Check List
+### 1) Check List
 
 - User
 
@@ -278,15 +278,17 @@ test 폴더: e2e test 폴더
 
   ✅  Unit Test
 
-  ✅  Functional Test  (입금, 조회, 출금에 대한 시나리오 테스트)
+   [ ]  Functional Test  (입금, 조회, 출금에 대한 시나리오 테스트)
 
 - 추가 고려 사항
 
   ✅  거래 내역이 1억건 이상일 때에 대한 고려
 
-#### 2) 상세 내용
+### 2) 상세 내용
 
-##### [DB설계 관련 논의사항](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/DB%EC%84%A4%EA%B3%84-%ED%9A%8C%EC%9D%98-%EB%82%B4%EC%9A%A9) 
+#### [DB설계 관련 논의사항](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/DB%EC%84%A4%EA%B3%84-%ED%9A%8C%EC%9D%98-%EB%82%B4%EC%9A%A9) 
+
+#### [typeorm에 Seed 추가](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/typeorm%EC%97%90-Seed-%EC%B6%94%EA%B0%80) 
 
 
 
