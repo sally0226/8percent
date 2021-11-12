@@ -21,83 +21,116 @@ interface Cursor {
 
 @EntityRepository(History)
 export class HistoryRepository extends Repository<History> {
-	async depositHistory(
-		accountNum: string,
-		type: string,
-		startDate: string,
-		endDate: string,
-		briefs: string,
-		minAmount: number,
-		maxAmount: number,
-		pageNum: number
-	) {
-		// const page = pageNum * 10 || 0;
-		const historyQuery = await this.createQueryBuilder("h")
-			// .select("h.type", "거래종류")
-			// .addSelect("h.amount", "사용 금액")
-			// .addSelect("h.historyBalance", "거래후 잔액")
-			// .addSelect("h.briefs", "적요")
-			// .addSelect("h.createdAt", "거래일시")
-			.innerJoin(Account, "a", "a.accountNum = h.accountNum");
-		if (type === typeOptions.deposit) historyQuery.where("h.type = TRUE");
-		if (type === typeOptions.withdraw) historyQuery.where("h.type = FALSE");
-		if (type === typeOptions.all)
+	private cursorDecode(cursor: string) {
+		console.log("beforeCursor", "afterCursor");
+		const columns = Buffer.from(cursor, "base64").toString();
+		console.log(columns);
+		const [key, raw] = columns.split(":");
+		return parseInt(raw);
+	}
+
+	async depositHistory(query) {
+		const historyQuery = await this.createQueryBuilder("h").innerJoin(
+			Account,
+			"a",
+			"a.accountNum = h.accountNum"
+		);
+
+		if (query.type === typeOptions.deposit)
+			historyQuery.where("h.type = TRUE");
+		if (query.type === typeOptions.withdraw)
+			historyQuery.where("h.type = FALSE");
+		if (query.type === typeOptions.all)
 			historyQuery.where("h.type = TRUE OR h.type = FALSE");
+
+		if (query.after != undefined) {
+			historyQuery.andWhere("h.historyId < :historyId", {
+				historyId: this.cursorDecode(query.after)
+			});
+		}
+
+		if (query.before != undefined) {
+			historyQuery.andWhere("h.historyId > :historyId", {
+				historyId: this.cursorDecode(query.before)
+			});
+		}
+
 		historyQuery.andWhere("h.accountNum = :accountNum", {
-			accountNum: accountNum
+			accountNum: query.accountNum
 		});
-		if (startDate != undefined && endDate != undefined)
+
+		if (query.startDate != undefined && query.endDate != undefined)
 			historyQuery.andWhere(
 				"h.createdAt BETWEEN :startDate AND :endDate",
 				{
-					startDate: startDate,
-					endDate: endDate
+					startDate: query.startDate,
+					endDate: query.endDate
 				}
 			);
-		if (briefs != undefined)
-			historyQuery.andWhere("h.briefs = :briefs", { briefs: briefs });
-		if (minAmount != 0 && maxAmount != 0)
+
+		if (query.briefs != undefined)
+			historyQuery.andWhere("h.briefs = :briefs", {
+				briefs: query.briefs
+			});
+
+		if (query.minAmount != 0 && query.maxAmount != 0)
 			historyQuery.andWhere(
 				"h.createdAt BETWEEN :minAmount AND :maxAmount",
 				{
-					minAmount: minAmount,
-					maxAmount: maxAmount
+					minAmount: query.minAmount,
+					maxAmount: query.maxAmount
 				}
 			);
-		// historyQuery.offset(page);
-		// historyQuery.limit(10);
-		// return historyQuery.getRawMany();
-		// historyQuery.getRawMany();
 
-		const paginator = buildPaginator({
-			entity: History,
-			alias: "h",
-			paginationKeys: ["historyId"],
-			query: {
-				limit: 10,
-				order: "DESC"
-			}
-		});
+		historyQuery.orderBy("h.historyId", "DESC");
+		historyQuery.limit(query.limit);
 
-		const { data, cursor } = await paginator.paginate(historyQuery);
+		if (query.after === undefined && query.before === undefined) {
+			const paginator = buildPaginator({
+				entity: History,
+				alias: "h",
+				paginationKeys: ["historyId"],
+				query: {
+					limit: query.limit,
+					order: "DESC"
+				}
+			});
 
-		// const nextPaginator = buildPaginator({
-		// 	entity: History,
-		// 	alias: "h",
-		// 	paginationKeys: ["historyId"],
-		// 	query: {
-		// 		limit: 10,
-		// 		order: "DESC",
-		// 		afterCursor: cursor.afterCursor
-		// 	}
-		// });
+			const { data, cursor } = await paginator.paginate(historyQuery);
+			return { data, cursor };
+		}
+
+		if (query.after != undefined) {
+			const nextPaginator = buildPaginator({
+				entity: History,
+				alias: "h",
+				paginationKeys: ["historyId"],
+				query: {
+					limit: query.limit,
+					order: "DESC",
+					afterCursor: query.after
+				}
+			});
+			const { data, cursor } = await nextPaginator.paginate(historyQuery);
+			return { data, cursor };
+		}
+
+		if (query.before != undefined) {
+			const prevPaginator = buildPaginator({
+				entity: History,
+				alias: "h",
+				paginationKeys: ["historyId"],
+				query: {
+					limit: query.limit,
+					order: "DESC",
+					beforeCursor: query.before
+				}
+			});
+
+			const { data, cursor } = await prevPaginator.paginate(historyQuery);
+			return { data, cursor };
+		}
 
 		return null;
 	}
-
-	// private CheckHistoryId(historyId: string) {
-	// 	if (historyId === null) {
-	// 		return null;
-	// 	}
-	// }
 }
