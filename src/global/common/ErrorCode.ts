@@ -29,6 +29,10 @@ export class ErrorCode {
 		HttpStatus.NOT_FOUND,
 		"아이디나 비밀번호를 확인해주세요."
 	);
+	static readonly LackOfBalance = new ErrorCode(
+		HttpStatus.BAD_REQUEST,
+		"잔액이 부족합니다."
+	);
 	static readonly NewError = new ErrorCode(
 		HttpStatus.NOT_FOUND,
 		"예상치 못한 에러입니다."

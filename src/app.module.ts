@@ -6,9 +6,10 @@ import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { Account } from "./domain/entities/account.entity";
 import { History } from "./domain/entities/history.entity";
 import { User } from "./domain/entities/user.entity";
-import { AccountModule } from './domain/account/account.module';
+import { AccountModule } from "./domain/account/account.module";
 import { UserModule } from "./domain/user/user.module";
 import { AuthModule } from "./domain/auth/auth.module";
+import { TransactionModule } from "./domain/transaction/transaction.module";
 
 @Module({
 	imports: [
@@ -35,7 +36,8 @@ import { AuthModule } from "./domain/auth/auth.module";
 		MorganModule,
 		AccountModule,
 		UserModule,
-		AuthModule
+		AuthModule,
+		TransactionModule
 	],
 	providers: [
 		{
