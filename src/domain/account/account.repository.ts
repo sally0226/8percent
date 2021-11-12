@@ -3,11 +3,7 @@ import { Account } from "../entities/account.entity";
 
 @EntityRepository(Account)
 export class AccountRepository extends Repository<Account> {
-	async createOne(
-		userId: string,
-		password: string,
-		accountNum: string
-	): Promise<Account> {
+	async createOne(userId: string, password: string, accountNum: string): Promise<Account> {
 		const created = this.create({
 			user: { userId },
 			accountNum,
