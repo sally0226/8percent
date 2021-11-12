@@ -41,6 +41,19 @@ export class ErrorCode {
 		HttpStatus.CONFLICT,
 		"중복된 아이디입니다."
 	);
+	static readonly SearchDate = new ErrorCode(
+		HttpStatus.BAD_REQUEST,
+		"startDate와 endDate 모두 값이 있어야 합니다."
+	);
+	static readonly SearchAmount = new ErrorCode(
+		HttpStatus.BAD_REQUEST,
+		"minAmount와 maxAmount 모두 값이 있어야 합니다."
+	);
+
+	static readonly SearchCursor = new ErrorCode(
+		HttpStatus.BAD_REQUEST,
+		"after와 before 중 하나만 값이 있어야 합니다."
+	);
 	constructor(
 		private readonly statusCode: number,
 		public readonly message: string

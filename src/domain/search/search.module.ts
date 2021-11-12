@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { AccountRepository } from "../account/account.repository";
 import { AuthModule } from "../auth/auth.module";
 import { Account } from "../entities/account.entity";
 import { History } from "../entities/history.entity";
@@ -9,7 +10,12 @@ import { SearchService } from "./search.service";
 
 @Module({
 	imports: [
-		TypeOrmModule.forFeature([HistoryRepository, History, Account]),
+		TypeOrmModule.forFeature([
+			History,
+			Account,
+			HistoryRepository,
+			AccountRepository
+		]),
 		AuthModule
 	],
 	controllers: [SearchController],

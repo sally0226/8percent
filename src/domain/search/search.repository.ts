@@ -29,7 +29,7 @@ export class HistoryRepository extends Repository<History> {
 		return parseInt(raw);
 	}
 
-	async depositHistory(query) {
+	async getHistory(query) {
 		const historyQuery = await this.createQueryBuilder("h").innerJoin(
 			Account,
 			"a",
