@@ -1,12 +1,11 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { AccountRepository } from "../account/account.repository";
-import { Account } from "../entities/account.entity";
-import { History } from "../entities/history.entity";
 import { UserRepository } from "../user/user.repository";
 import { TranscationDto } from "./dto/transaction.dto";
 import { WrongPasswordException } from "./exception/WrongPasswordException";
 import { TransactionRepository } from "./transaction.repository";
 import * as bcrypt from "bcrypt";
+import { IncorrectPasswordException } from "../account/exception/IncorrectPasswordException";
 
 @Injectable()
 export class TransactionService {
@@ -24,7 +23,7 @@ export class TransactionService {
 		// if (loginUser.userId != accountOwner.user.userId)
 		// 	throw new UnauthorizedException();
 
-		const password = await this.accountRepository.get(
+		const password = await this.accountRepository.getOne(
 			transactionDto.accountNum
 		);
 
@@ -36,7 +35,7 @@ export class TransactionService {
 					password.password
 				)))
 		)
-			throw new WrongPasswordException();
+			throw new IncorrectPasswordException();
 
 		const result = this.accountRepository.updateBalance(
 			transactionDto.accountNum,
@@ -52,7 +51,7 @@ export class TransactionService {
 	async withdraw(loginUser, transactionDto: TranscationDto) {
 		if (!loginUser?.userId) throw new UnauthorizedException();
 
-		const password = await this.accountRepository.get(
+		const password = await this.accountRepository.getOne(
 			transactionDto.accountNum
 		);
 
