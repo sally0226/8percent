@@ -21,4 +21,12 @@ export class User extends BaseModel {
 		onDelete: "CASCADE"
 	})
 	account?: Account[];
+
+	static mock(userId, password, userName) {
+		const fake = new User()
+		fake.userId = userId;
+		fake.password = password;
+		fake.userName = userName;
+		return fake;
+	}
 }
