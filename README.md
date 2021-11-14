@@ -13,7 +13,7 @@
 | 이름                                     | 담당 기능 |
 | ---------------------------------------- | --------- |
 | [김바다](https://github.com/sally0226)   | 회원가입, 로그인 API 기능 구현, 코드 리팩토링, Seeding 관련 작업 |
-| [김효민](https://github.com/luckyhyom)   | 계좌 생성/삭제 API 기능 구현, 코드 리팩토링, 유닛 테스트, AWS 배포 |
+| [김효민](https://github.com/luckyhyom)   | 계좌 생성/삭제 API 기능 구현, 코드 리팩토링, AWS 배포 |
 | [원동균](https://github.com/WonDongGyun) | 입/출금 내역 조회 API 기능 구현 및 테스트, 페이징 성능 향상 작업, 프로젝트 환경 설정 |
 | [이나영](https://github.com/bokiri409)   | 입/출금 거래 API 기능 구현, 코드 리팩토링, AWS 배포 |
 | [장희진](https://github.com/heejin99)    | 계좌 생성/삭제 API 기능 구현, Seeding 관련 작업 |
@@ -342,4 +342,4 @@ test 폴더: e2e test 폴더
 
 | 김바다 | 김효민 | 원동균 | 이나영 | 장희진 | 조재복 |
 | :----: | :----: | :----: | :----: | :----: | :----: |
-|        |        |[티스토리 블로그](https://tristy.tistory.com/46)     |        |        |        |
+|        |[티스토리 블로그](https://baejjang.tistory.com/8)|[티스토리 블로그](https://tristy.tistory.com/46)|        |        |        |
