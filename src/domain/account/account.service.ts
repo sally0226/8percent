@@ -11,11 +11,10 @@ export class AccountService {
 	constructor(private accountRepository: AccountRepository) {}
 
 	async create(user: JwtPayload, password: string): Promise<CreateAccountRes> {
-		const hashed = await this.hash(password);
 		return new CreateAccountRes(
 			await this.accountRepository.createOne(
 				user.userId,
-				hashed,
+				await this.hash(password),
 				await this.createAccountNumber()
 			)
 		);
