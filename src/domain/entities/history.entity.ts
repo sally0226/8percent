@@ -12,8 +12,7 @@ import { Account } from "./account.entity";
 
 @Entity("history")
 export class History {
-	// @PrimaryGeneratedColumn("increment")
-	@PrimaryColumn()
+	@PrimaryGeneratedColumn("increment")
 	@ApiProperty({ description: "내역 ID" })
 	historyId!: number;
 
