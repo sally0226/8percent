@@ -24,8 +24,11 @@ export class User extends BaseModel {
 	})
 	account?: Account[];
 
-	@BeforeInsert()
-	async setPassword(password: string) {
-		this.password = await bcrypt.hash(password || this.password, 10);
+	static mock(userId, password, userName) {
+		const fake = new User()
+		fake.userId = userId;
+		fake.password = password;
+		fake.userName = userName;
+		return fake;
 	}
 }

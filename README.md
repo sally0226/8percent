@@ -12,18 +12,18 @@
 
 | 이름                                     | 담당 기능 |
 | ---------------------------------------- | --------- |
-| [김바다](https://github.com/sally0226)   |           |
-| [김효민](https://github.com/luckyhyom)   |           |
-| [원동균](https://github.com/WonDongGyun) |           |
-| [이나영](https://github.com/bokiri409)   |           |
-| [장희진](https://github.com/heejin99)    |           |
-| [조재복](https://github.com/ildang100)   |           |
+| [김바다](https://github.com/sally0226)   | 회원가입, 로그인 API 기능 구현, 코드 리팩토링, Seeding 관련 작업 |
+| [김효민](https://github.com/luckyhyom)   | 계좌 생성/삭제 API 기능 구현, 코드 리팩토링, AWS 배포 |
+| [원동균](https://github.com/WonDongGyun) | 입/출금 내역 조회 API 기능 구현 및 테스트, 페이징 성능 향상 작업, 프로젝트 환경 설정 |
+| [이나영](https://github.com/bokiri409)   | 입/출금 거래 API 기능 구현, 코드 리팩토링, AWS 배포 |
+| [장희진](https://github.com/heejin99)    | 계좌 생성/삭제 API 기능 구현, Seeding 관련 작업 |
+| [조재복](https://github.com/ildang100)   |     -     |
 
 
 
 ## 🌎 배포
 
-주소 : 
+주소 : http://makevalue.net:3000/
 
 
 
@@ -32,22 +32,22 @@
 1. 상단의 Code 버튼을 눌러 경로를 복사한 후 클론 받습니다.
 
 ```
-$ git clone https://github.com/preOnboarding-Team13/Assignment-3-redbrick.git
+$ git clone https://github.com/preOnboarding-Team13/Assignment-4-8percent.git
 ```
 
-1. 패키지를 설치합니다.
+2. 패키지를 설치합니다.
 
 ```
 $ npm install
 ```
 
-1. 서버를 실행해 줍니다.
+3. 서버를 실행해 줍니다.
 
 ```
 $ npm start
 ```
 
-1. 정해진 API에 접근하여 서비스를 이용합니다.
+4. 정해진 API에 접근하여 서비스를 이용합니다.
 
 
 
@@ -162,59 +162,143 @@ $ npm start
 
 ## 📂 폴더 구조
 
+6개의 domain을 생성했습니다.
+
+- account
+- auth
+- entities
+- search
+- transaction
+- user
+
+global 폴더: Error Handler 폴더
+
+test 폴더: e2e test 폴더
+
 ```
+📁 src
+├── 📁 domain
+│  ├── 📂 account
+│  │  ├── 📂 dto
+│  │  │  ├── 📄 createAccountReq.dto.ts
+│  │  │  ├── 📄 createAccountRes.dto.ts
+│  │  │  └── 📄 deleteAccountReq.dto.ts
+│  │  ├── 📂 exception
+│  │  │  ├── 📄 IncorrectPasswordException.ts
+│  │  │  └── 📄 NotFoundAccountException.dto.ts
+│  │  ├── 📄 account.controller.ts
+│  │  ├── 📄 account.module.ts
+│  │  ├── 📄 account.repository.ts
+│  │  ├── 📄 account.service.spec.ts
+│  │  ├── 📄 account.service.ts
+│  ├── 📂 search
+│  │  ├── ...
+│  ├── 📂 transaction
+│  │  ├── ...
+│  ├── 📂 user
+│  │  ├── ...
+│  ├── 📂 auth
+│  │  ├── 📂 dto
+│  │  │  └── 📄 jwtPayload.dto.ts
+│  │  ├── 📂 guards
+│  │  │  ├── 📄 jwtGuard.guard.ts
+│  │  │  └── 📄 localAuthGuard.guard.ts
+│  │  ├── 📄 auth.jwtStrategy.ts
+│  │  ├── 📄 auth.localStrategy.ts
+│  │  ├── 📄 auth.module.ts
+│  │  ├── 📄 auth.service.spec.ts
+│  │  ├── 📄 auth.service.ts
+│  │  └── 📄 user.decorator.ts
+│  ├── 📂 entities
+│  │  ├── 📂 base
+│  │  │  └── 📄 base.entity.ts
+│  │  ├── 📄 account.entity.ts
+│  │  ├── 📄 history.entity.ts
+│  │  └── 📄 user.entity.ts
+├── 📂 global
+│  ├── 📂 common
+│  │  ├── 📄 CommonResponse.ts
+│  │  ├── 📄 ErrorCode.ts
+│  │  └── 📄 ErrorResponse.ts
+│  ├── 📂 custom
+│  │  ├── 📂 decorator
+│  │  │  ├── 📂 exception
+│  │  │  │  ├── 📄 SearchAmountException.ts
+│  │  │  │  ├── 📄 SearchCursorException.ts
+│  │  │  │  └── 📄 SearchDateException.ts
+│  │  │  └── 📄 historyDecorator.custom.ts
+│  ├── 📂 exception
+│  │  └── 📄 ErrorHandler.ts
+│  ├── 📂 swagger
+│  │  └── 📄 setSwagger.swagger.ts
+📁 test
+├── 📄 app.e2e-spec.ts
+└── 📄 jest-e2e.json
+📄 .env
+📄 nest-cli.json
+📄 package.json
+📄 package-lock.json
+📄 tsconfig.json
+📄 tsconfig.build.json
+📄 README.md
 ```
 
 
 
 ## 🔗 구현 기능
 
-#### 1) Check List
+### 1) Check List
 
 - User
 
-  [ ]  회원가입
+  ✅  회원가입
 
-  [ ]  로그인
+  ✅  로그인
 
 - 계좌 관리
 
-  [ ]  계좌 생성
+  ✅  계좌 생성
 
-  [ ]  계좌 삭제
+  ✅  계좌 삭제
 
 - 거래 및 조회
 
-  [ ]  거래내역 조회 API
+  ✅  거래내역 조회 API
 
   - 입금/ 출금/ 전체 내역 조회
   - 시작날짜 ~ 종료날짜 검색
   - 최소금액 ~ 최대금액 검색
   - 적요 검색
 
-  [ ]  입금 API
+  ✅  입금 API
 
-  [ ]  출금 API
+  ✅  출금 API
 
 - 테스트 코드
 
-  [ ]  Unit Test
+  ✅  Unit Test
 
-  [ ]  Functional Test  (입금, 조회, 출금에 대한 시나리오 테스트)
+  ✖️  Functional Test  (입금, 조회, 출금에 대한 시나리오 테스트)
 
 - 추가 고려 사항
 
-  [ ]  거래 내역이 1억건 이상일 때에 대한 고려
+  ✅  거래 내역이 1억건 이상일 때에 대한 고려
 
-#### 2) 상세 내용
+### 2) 상세 내용
 
-##### [DB설계 관련 논의사항](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/DB%EC%84%A4%EA%B3%84-%ED%9A%8C%EC%9D%98-%EB%82%B4%EC%9A%A9) 
+#### [DB설계 관련 논의사항](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/DB%EC%84%A4%EA%B3%84-%ED%9A%8C%EC%9D%98-%EB%82%B4%EC%9A%A9) 
+
+#### [TypeOrm에 Seed 추가](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/typeorm%EC%97%90-Seed-%EC%B6%94%EA%B0%80) 
+
+#### [TypeOrm 페이지 성능 향상 도전기](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/TypeOrm-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81-%EB%8F%84%EC%A0%84%EA%B8%B0)
+
+
 
 
 
 ## 🐾 API
 
-[Postman 주소-링크]()
+[Postman 주소-링크](https://documenter.getpostman.com/view/15410333/UVC8Ckor)
 
 
 
@@ -222,12 +306,40 @@ $ npm start
 
 #### 1. 위의 Postman 주소 링크를 클릭하여 Postman으로 들어갑니다.
 
-#### 2. 서버 주소가 알맞은지 확인합니다.
+#### 2. Create User, Login API를 이용하여 회원가입과 로그인을 진행할 수 있습니다.
 
+![image](https://user-images.githubusercontent.com/43634786/141534046-8e50e9ee-556d-4a99-b625-e7701556a86b.png)
+
+#### 3. Create, Delete Account API를 이용하여 계좌 생성, 삭제를 진행할 수 있습니다. 
+
+![image](https://user-images.githubusercontent.com/43634786/141534969-648289e3-1404-488d-a5b9-1264319f0fa9.png)
+
+#### 4. Deposit, Withdraw Mondy API를 이용하여 입금, 출금을 할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/43634786/141538649-334596b8-eac6-4af1-b78b-420f4d11e78e.png)
+
+#### 5. Search History API를 이용하여 조건에 따른 입출금내역 조회를 할 수 있습니다.
+![image](https://user-images.githubusercontent.com/63238936/141578654-1a997973-733e-449c-98b2-e4284a8671dc.png)
+
+<br>
+<br>
+
+**입/출금 내역 조회 조건**
+
+1. accountNum[계좌번호] (필수)  
+2. type[입/출금 유형] (필수) 'all' => 전체 검색, 'deposit' => 입금 내역 검색, 'withdraw' => 출금 내역 검색  
+3. startDate[시작 범위] startDate는 endDate와 같이 사용하거나 아예 같이 사용하지 않아야 합니다. 어느 한쪽만 값이 있는 경우는 오류가 납니다.   
+4. endDate [종료 범위]  
+5. briefs [적요]  
+6. minAmount [최저 금액] minAmount는 maxAmount와 같이 사용하거나 아예 같이 사용하지 않아야 합니다. 어느 한쪽만 값이 있는 경우는 오류가 납니다.   
+7. maxAmount [최고 금액]  
+8. after [다음 페이지 커서] 조회 결과로 나오는 커서를 해당 쿼리에 작성해야 합니다.  
+9. before [이전 페이지 커서]  
+10. limit [페이지 단위] 아무것도 작성하지 않을 시 10개를 가져오게 됩니다.  
 
 
 ## 🍭 TIL 주소
 
 | 김바다 | 김효민 | 원동균 | 이나영 | 장희진 | 조재복 |
 | :----: | :----: | :----: | :----: | :----: | :----: |
-|        |        |        |        |        |        |
+|        |[티스토리 블로그](https://baejjang.tistory.com/8)|[티스토리 블로그](https://tristy.tistory.com/46)|        |        |        |

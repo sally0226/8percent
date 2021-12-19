@@ -4,7 +4,6 @@ import { JwtPayload } from "./dto/jwtPayload.dto";
 
 export class JwtStrategy extends PassportStrategy(Strategy) {
 	constructor() {
-		console.log(process.env.SECRET_KEY);
 		super({
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 			ignoreExpiration: false,

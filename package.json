@@ -52,7 +52,8 @@
     "sqlite3": "^5.0.2",
     "swagger-ui-express": "^4.1.6",
     "typeorm": "^0.2.40",
-    "typeorm-seeding": "^1.6.1"
+    "typeorm-seeding": "^1.6.1",
+    "typeorm-cursor-pagination": "^0.6.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
@@ -96,6 +97,9 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+			"^src/(.*)$": "<rootDir>/$1"
+		}
   }
 }

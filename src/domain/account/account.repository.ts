@@ -12,6 +12,15 @@ export class AccountRepository extends Repository<Account> {
 		return this.save(created);
 	}
 
+	async updateBalance(account: Account) {
+		const { accountNum } = account;
+		return await this.createQueryBuilder()
+			.update()
+			.set(account)
+			.where("accountNum = :accountNum ", { accountNum })
+			.execute();
+	}
+
 	async isExisted(accountNum: string): Promise<number> {
 		return await this.createQueryBuilder("account")
 			.select("*")
@@ -21,7 +30,12 @@ export class AccountRepository extends Repository<Account> {
 
 	async getOne(accountNum: string): Promise<Account> {
 		return await this.createQueryBuilder("account")
-			.select(["account.password", "user.userId"])
+			.select([
+				"account.password",
+				"user.userId",
+				"account.balance",
+				"account.accountNum"
+			])
 			.leftJoin("account.user", "user")
 			.where("account.accountNum =:accountNum", { accountNum })
 			.getOne();

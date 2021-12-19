@@ -11,11 +11,10 @@ export class AccountService {
 	constructor(private accountRepository: AccountRepository) {}
 
 	async create(user: JwtPayload, password: string): Promise<CreateAccountRes> {
-		// const hashed = await this.hash(password);
 		return new CreateAccountRes(
 			await this.accountRepository.createOne(
 				user.userId,
-				password,
+				await this.hash(password),
 				await this.createAccountNumber()
 			)
 		);
@@ -26,14 +25,20 @@ export class AccountService {
 		if (!account) {
 			throw new NotFoundAccountException();
 		}
-		this.isOwner(account, user);
-		this.isCorrectPassword(account, password);
+		if (!await account.isOwner(user.userId)) {
+			throw new ForbiddenException();
+		};
+		
+		if (!await account.checkPassword(password)) {
+			throw new IncorrectPasswordException();
+		};
+
 		await this.accountRepository.deleteOne(accountNum);
 	}
 
-	// private hash(password: string): Promise<string> {
-	// 	return bcrypt.hash(password, 10);
-	// }
+	private async hash(password: string): Promise<string> {
+		return await bcrypt.hash(password, 10);
+	}
 
 	private async createAccountNumber(): Promise<string> {
 		const accountNumber = this.inputHyphen(this.makeRandom());
@@ -50,16 +55,4 @@ export class AccountService {
 	private makeRandom(): string {
 		return Math.random().toString(10).substr(2, 14);
 	}
-
-    private isOwner(account, user) {
-        if (account.user.userId !== user.userId) {
-            throw new ForbiddenException();
-        }
-	}
-
-    private isCorrectPassword(account, password) {
-        if (!bcrypt.compare(password, account.password)) {
-			throw new IncorrectPasswordException();
-		}
-    }
 }

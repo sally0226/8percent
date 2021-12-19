@@ -6,17 +6,23 @@ import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { Account } from "./domain/entities/account.entity";
 import { History } from "./domain/entities/history.entity";
 import { User } from "./domain/entities/user.entity";
+import { SearchModule } from "./domain/search/search.module";
 import { AccountModule } from "./domain/account/account.module";
 import { UserModule } from "./domain/user/user.module";
 import { AuthModule } from "./domain/auth/auth.module";
+import { TransactionModule } from "./domain/transaction/transaction.module";
 
 @Module({
 	imports: [
+		ConfigModule.forRoot({
+			isGlobal: true
+		}),
 		TypeOrmModule.forRoot({
 			type: "sqlite",
 			database: ":memory:",
 			entities: [User, History, Account],
-			synchronize: true
+			synchronize: true,
+			keepConnectionAlive: true
 		}),
 		ConfigModule.forRoot({
 			isGlobal: true
@@ -33,7 +39,9 @@ import { AuthModule } from "./domain/auth/auth.module";
 		// 	keepConnectionAlive: true
 		// }),
 		MorganModule,
+		SearchModule,
 		AccountModule,
+		TransactionModule,
 		UserModule,
 		AuthModule
 	],
