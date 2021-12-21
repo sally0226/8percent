@@ -2,15 +2,13 @@ import {
 	ClassSerializerInterceptor,
 	Controller,
 	Get,
-	Query,
-	Request,
 	UseGuards,
 	UseInterceptors,
 	UsePipes,
 	ValidationPipe
 } from "@nestjs/common";
 import { ApiOperation } from "@nestjs/swagger";
-import { SearchHistory } from "../../global/custom/decorator/historyDecorator.custom";
+import { SearchHistory } from "../../global/decorator/historyDecorator.custom";
 import { JwtPayload } from "../auth/dto/jwtPayload.dto";
 import { JwtGuard } from "../auth/guards/jwtGuard.guard";
 import { ParamUser } from "../auth/user.decorator";

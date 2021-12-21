@@ -3,7 +3,7 @@ import { AccountRepository } from "../account/account.repository";
 import { UserRepository } from "../user/user.repository";
 import { TranscationDto } from "./dto/transaction.dto";
 import { TransactionRepository } from "./transaction.repository";
-import { IncorrectPasswordException } from "../account/exception/IncorrectPasswordException";
+import { IncorrectPasswordException } from "../../global/exception/IncorrectPasswordException";
 import { Account } from "../entities/account.entity";
 
 @Injectable()

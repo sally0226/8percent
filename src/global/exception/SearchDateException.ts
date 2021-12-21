@@ -1,5 +1,5 @@
 import { HttpException } from "@nestjs/common";
-import { ErrorCode } from "../../../common/ErrorCode";
+import { ErrorCode } from "./ErrorCode";
 
 export class SearchDateException extends HttpException {
 	constructor() {

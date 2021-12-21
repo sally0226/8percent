@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
+import { NotFoundAccountException } from "src/global/exception/NotFoundAccountException";
 import { AccountRepository } from "../account/account.repository";
-import { NotFoundAccountException } from "../account/exception/NotFoundAccountException";
 import { JwtPayload } from "../auth/dto/jwtPayload.dto";
 import { searchHistoryDto } from "./dto/searchHistory.dto";
 import { HistoryRepository } from "./search.repository";

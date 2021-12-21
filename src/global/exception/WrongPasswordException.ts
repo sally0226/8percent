@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
-import { ErrorCode } from "../../../global/common/ErrorCode";
+import { ErrorCode } from "src/global/exception/ErrorCode";
 
 export class WrongPasswordException extends HttpException {
 	constructor() {

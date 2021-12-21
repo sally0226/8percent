@@ -13,7 +13,7 @@ import * as bcrypt from "bcrypt";
 import { BaseModel } from "./base/base.entity";
 import { History } from "./history.entity";
 import { User } from "./user.entity";
-import { LackOfBalanceExcetion } from "../transaction/exception/LackOfBalanceException";
+import { LackOfBalanceExcetion } from "../../global/exception/LackOfBalanceException";
 
 @Entity("account")
 export class Account extends BaseModel {

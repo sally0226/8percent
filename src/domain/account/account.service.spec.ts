@@ -4,8 +4,8 @@ import { Account } from "../entities/account.entity";
 import { User } from "../entities/user.entity";
 import { AccountRepository } from "./account.repository";
 import { AccountService } from "./account.service";
-import { IncorrectPasswordException } from "./exception/IncorrectPasswordException";
-import { NotFoundAccountException } from "./exception/NotFoundAccountException";
+import { IncorrectPasswordException } from "../../global/exception/IncorrectPasswordException";
+import { NotFoundAccountException } from "src/global/exception/NotFoundAccountException";
 
 const mockRepository = {
 	createOne: jest.fn(async (userId, password, accountNum) => {
@@ -50,9 +50,9 @@ describe("Account Service", () => {
 
 	describe("계좌 생성 테스트", () => {
 		it("계좌번호를 자동으로 생성 성공", async () => {
-      const user = User.mock("userId", "password", "홍길동");
-      const accountPassword = "1234";
-      
+			const user = User.mock("userId", "password", "홍길동");
+			const accountPassword = "1234";
+
 			const account = await service.create(user, accountPassword);
 
 			const accountReg = /(\d{6})-(\d{2})-(\d{6})/;

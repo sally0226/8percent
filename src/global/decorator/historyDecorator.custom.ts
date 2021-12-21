@@ -1,7 +1,7 @@
 import { createParamDecorator, ExecutionContext } from "@nestjs/common";
-import { SearchAmountException } from "./exception/SearchAmountException";
-import { SearchCursorException } from "./exception/SearchCursorException";
-import { SearchDateException } from "./exception/SearchDateException";
+import { SearchCursorException } from "src/global/exception/SearchCursorException";
+import { SearchDateException } from "src/global/exception/SearchDateException";
+import { SearchAmountException } from "../exception/SearchAmountException";
 
 export const SearchHistory = createParamDecorator(
 	(data: unknown, ctx: ExecutionContext) => {

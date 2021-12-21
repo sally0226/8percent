@@ -3,8 +3,8 @@ import { AccountRepository } from "./account.repository";
 import * as bcrypt from "bcrypt";
 import { JwtPayload } from "../auth/dto/jwtPayload.dto";
 import { CreateAccountRes } from "./dto/createAccountRes.dto";
-import { NotFoundAccountException } from "./exception/NotFoundAccountException";
-import { IncorrectPasswordException } from "./exception/IncorrectPasswordException";
+import { IncorrectPasswordException } from "../../global/exception/IncorrectPasswordException";
+import { NotFoundAccountException } from "src/global/exception/NotFoundAccountException";
 
 @Injectable()
 export class AccountService {
