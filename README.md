@@ -40,12 +40,12 @@
 <br>
 
 ## 📝 과제 요구사항
-
+<details>
+<summary>상세 내용</summary>
+<div markdown="1">
+   
 ### [필수 포함 사항]
-
-- READ.ME
-
-  작성
+- READ.ME 작성
 
   - 프로젝트 빌드, 자세한 실행 방법 명시
   - 구현 방법과 이유에 대한 간략한 설명
@@ -119,6 +119,9 @@
 - 거래내역이 1억건을 넘어갈 때에 대한 고려
   - 이를 고려하여 어떤 설계를 추가하셨는지를 README에 남겨 주세요.
 
+</div>
+</details>
+
 <br>
 
 ## :world_map: API 설계
@@ -149,6 +152,10 @@
 <br>
 
 ## 📂 폴더 구조
+
+<details>
+<summary>상세 내용</summary>
+<div markdown="1">
 
 6개의 domain을 생성했습니다.
 
@@ -224,7 +231,8 @@ test 폴더: e2e test 폴더
 📄 tsconfig.build.json
 📄 README.md
 ```
-
+</div>
+</details>
 <br>
 
 ## 🔗 구현 기능
@@ -282,9 +290,9 @@ test 폴더: e2e test 폴더
 
 [Postman 주소-링크](https://documenter.getpostman.com/view/15410333/UVC8Ckor)
 
-
-
-## 🐾 API Test 방법
+<details>
+<summary>🐾 API Test 방법</summary>
+<div markdown="1">
 
 #### 1. 위의 Postman 주소 링크를 클릭하여 Postman으로 들어갑니다.
 
@@ -304,7 +312,9 @@ test 폴더: e2e test 폴더
 
 ![image](https://user-images.githubusercontent.com/63238936/141578654-1a997973-733e-449c-98b2-e4284a8671dc.png)
 
-<br>
+</div>
+</details>
+
 <br>
 
 **입/출금 내역 조회 조건**
