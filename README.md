@@ -2,54 +2,42 @@
 
 🧱 wanted x wecode 프리온보딩 백엔드 코스 - [Assignment 4] 8percent
 
-[8퍼센트 사이트](https://8percent.kr/)
+2021년 11월 한 달 동안 진행된 
 
-[원티드 채용 링크](https://www.wanted.co.kr/wd/64695)
+[원티드x위코드] 백엔드 프리온보딩 코스의 `4 번째 과제`로 진행했던 레포입니다.
 
+<br>
 
+## 과제 종료 이후 개인적으로 진행한 것들
+
+1. 미완성 상태였던 Seeding 완성
+   - 블로그 포스팅 추가 예정
+2. Error Handler 리팩토링
+   - if문을 이용해서 작성한 기존 Error Handler는 확장성 및 유지보수에 적합하지 않음
+   - 따라서, [공식문서의 Exception Filter](https://docs.nestjs.com/exception-filters)를 사용하도록 변경 
+3. E2E Test 작성 
+   - [에러 해결 과정 포스팅_1](https://bba-dda.tistory.com/113)
+
+<br>
 
 ## ☄️ 팀원 소개
 
-| 이름                                     | 담당 기능 |
-| ---------------------------------------- | --------- |
+| 이름                                     | 담당 기능                                                    |
+| ---------------------------------------- | ------------------------------------------------------------ |
 | [김바다](https://github.com/sally0226)   | 회원가입, 로그인 API 기능 구현, 코드 리팩토링, Seeding 관련 작업 |
-| [김효민](https://github.com/luckyhyom)   | 계좌 생성/삭제 API 기능 구현, 코드 리팩토링, AWS 배포 |
+| [김효민](https://github.com/luckyhyom)   | 계좌 생성/삭제 API 기능 구현, 코드 리팩토링, AWS 배포        |
 | [원동균](https://github.com/WonDongGyun) | 입/출금 내역 조회 API 기능 구현 및 테스트, 페이징 성능 향상 작업, 프로젝트 환경 설정 |
-| [이나영](https://github.com/bokiri409)   | 입/출금 거래 API 기능 구현, 코드 리팩토링, AWS 배포 |
-| [장희진](https://github.com/heejin99)    | 계좌 생성/삭제 API 기능 구현, Seeding 관련 작업 |
-| [조재복](https://github.com/ildang100)   |     -     |
+| [이나영](https://github.com/bokiri409)   | 입/출금 거래 API 기능 구현, 코드 리팩토링, AWS 배포          |
+| [장희진](https://github.com/heejin99)    | 계좌 생성/삭제 API 기능 구현, Seeding 관련 작업              |
+| [조재복](https://github.com/ildang100)   | -                                                            |
 
-
+<br>
 
 ## 🌎 배포
 
-주소 : http://makevalue.net:3000/
+-
 
-
-
-## 🛠 프로젝트 빌드 및 서버 실행 방법
-
-1. 상단의 Code 버튼을 눌러 경로를 복사한 후 클론 받습니다.
-
-```
-$ git clone https://github.com/preOnboarding-Team13/Assignment-4-8percent.git
-```
-
-2. 패키지를 설치합니다.
-
-```
-$ npm install
-```
-
-3. 서버를 실행해 줍니다.
-
-```
-$ npm start
-```
-
-4. 정해진 API에 접근하여 서비스를 이용합니다.
-
-
+<br>
 
 ## 📝 과제 요구사항
 
@@ -57,7 +45,7 @@ $ npm start
 
 - READ.ME
 
-   작성
+  작성
 
   - 프로젝트 빌드, 자세한 실행 방법 명시
   - 구현 방법과 이유에 대한 간략한 설명
@@ -131,25 +119,25 @@ $ npm start
 - 거래내역이 1억건을 넘어갈 때에 대한 고려
   - 이를 고려하여 어떤 설계를 추가하셨는지를 README에 남겨 주세요.
 
-
+<br>
 
 ## :world_map: API 설계
 
 [API 설계 노션 링크](https://gifted-catboat-f9b.notion.site/API-ef383ed2b15d4904b5087ee3cf33ba35)
 
-
+<br>
 
 ## :sailboat: 도메인 주도 설계
 
-![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/a7e2aaf8-3623-4736-94c8-28608b02016f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20211111%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211111T151051Z&X-Amz-Expires=86400&X-Amz-Signature=110da49dcbe74d3937bddfa7f6dab6406d724e0d8f66402bccac22b3908675e6&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+이미지 첨부
 
-
+<br>
 
 ## 🧬 DB 모델링
 
-![img](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ddb804eb-e67e-48d3-a3c1-85be93a3338f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20211111%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20211111T151137Z&X-Amz-Expires=86400&X-Amz-Signature=1ac1be80242ac3aa1034701eb134118c445c32a694c7f8d7488313ed4618008d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+이미지 첨부
 
-
+<br>
 
 ## 🏫 사용 기술
 
@@ -158,7 +146,7 @@ $ npm start
 -   Collaboration : <img src="https://img.shields.io/badge/Git-F05032?style=flat&logo=Git&logoColor=white"/></a> <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=GitHub&logoColor=white"/></a> <img src="https://img.shields.io/badge/Postman-FF6C37?style=flat&logo=Postman&logoColor=white"/></a>
 -   Deploy : <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat&logo=Amazon AWS&logoColor=white"/>
 
-
+<br>
 
 ## 📂 폴더 구조
 
@@ -171,8 +159,6 @@ $ npm start
 - transaction
 - user
 
-global 폴더: Error Handler 폴더
-
 test 폴더: e2e test 폴더
 
 ```
@@ -183,9 +169,6 @@ test 폴더: e2e test 폴더
 │  │  │  ├── 📄 createAccountReq.dto.ts
 │  │  │  ├── 📄 createAccountRes.dto.ts
 │  │  │  └── 📄 deleteAccountReq.dto.ts
-│  │  ├── 📂 exception
-│  │  │  ├── 📄 IncorrectPasswordException.ts
-│  │  │  └── 📄 NotFoundAccountException.dto.ts
 │  │  ├── 📄 account.controller.ts
 │  │  ├── 📄 account.module.ts
 │  │  ├── 📄 account.repository.ts
@@ -216,19 +199,18 @@ test 폴더: e2e test 폴더
 │  │  ├── 📄 history.entity.ts
 │  │  └── 📄 user.entity.ts
 ├── 📂 global
-│  ├── 📂 common
-│  │  ├── 📄 CommonResponse.ts
-│  │  ├── 📄 ErrorCode.ts
-│  │  └── 📄 ErrorResponse.ts
 │  ├── 📂 custom
 │  │  ├── 📂 decorator
-│  │  │  ├── 📂 exception
-│  │  │  │  ├── 📄 SearchAmountException.ts
-│  │  │  │  ├── 📄 SearchCursorException.ts
-│  │  │  │  └── 📄 SearchDateException.ts
 │  │  │  └── 📄 historyDecorator.custom.ts
-│  ├── 📂 exception
-│  │  └── 📄 ErrorHandler.ts
+│  │  ├── 📂 exception
+│  │  │  ├── 📄 IncorrectPasswordException.ts
+│  │  │  └── 📄 NotFoundAccountException.dto.ts
+│  │  │  ├── 📄 SearchAmountException.ts
+│  │  │  ├── 📄 SearchCursorException.ts
+│  │  │  ├── 📄 SearchDateException.ts
+│  │  │  ├── ... custom Exceptions
+│  │  │  ├── 📄 ErrorCode.ts
+│  │  │  ├── 📄 http-exception.filter.ts
 │  ├── 📂 swagger
 │  │  └── 📄 setSwagger.swagger.ts
 📁 test
@@ -243,7 +225,7 @@ test 폴더: e2e test 폴더
 📄 README.md
 ```
 
-
+<br>
 
 ## 🔗 구현 기능
 
@@ -284,6 +266,8 @@ test 폴더: e2e test 폴더
 
   ✅  거래 내역이 1억건 이상일 때에 대한 고려
 
+<br>
+
 ### 2) 상세 내용
 
 #### [DB설계 관련 논의사항](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/DB%EC%84%A4%EA%B3%84-%ED%9A%8C%EC%9D%98-%EB%82%B4%EC%9A%A9) 
@@ -292,9 +276,7 @@ test 폴더: e2e test 폴더
 
 #### [TypeOrm 페이지 성능 향상 도전기](https://github.com/preOnboarding-Team13/Assignment-4-8percent/wiki/TypeOrm-%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%84%B1%EB%8A%A5-%ED%96%A5%EC%83%81-%EB%8F%84%EC%A0%84%EA%B8%B0)
 
-
-
-
+<br>
 
 ## 🐾 API
 
@@ -319,6 +301,7 @@ test 폴더: e2e test 폴더
 ![image](https://user-images.githubusercontent.com/43634786/141538649-334596b8-eac6-4af1-b78b-420f4d11e78e.png)
 
 #### 5. Search History API를 이용하여 조건에 따른 입출금내역 조회를 할 수 있습니다.
+
 ![image](https://user-images.githubusercontent.com/63238936/141578654-1a997973-733e-449c-98b2-e4284a8671dc.png)
 
 <br>
@@ -335,11 +318,16 @@ test 폴더: e2e test 폴더
 7. maxAmount [최고 금액]  
 8. after [다음 페이지 커서] 조회 결과로 나오는 커서를 해당 쿼리에 작성해야 합니다.  
 9. before [이전 페이지 커서]  
-10. limit [페이지 단위] 아무것도 작성하지 않을 시 10개를 가져오게 됩니다.  
+10. limit [페이지 단위] 아무것도 작성하지 않을 시 10개를 가져오게 됩니다. 
+
+<br>
 
 
 ## 🍭 TIL 주소
 
-| 김바다 | 김효민 | 원동균 | 이나영 | 장희진 | 조재복 |
-| :----: | :----: | :----: | :----: | :----: | :----: |
-|        |[티스토리 블로그](https://baejjang.tistory.com/8)|[티스토리 블로그](https://tristy.tistory.com/46)|        |        |        |
+| 김바다 |                      김효민                       |                      원동균                      | 이나영 | 장희진 | 조재복 |
+| :----: | :-----------------------------------------------: | :----------------------------------------------: | :----: | :----: | :----: |
+|        | [티스토리 블로그](https://baejjang.tistory.com/8) | [티스토리 블로그](https://tristy.tistory.com/46) |        |        |        |
+
+<br>
+
