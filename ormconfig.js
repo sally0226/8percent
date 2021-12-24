@@ -9,7 +9,7 @@ module.exports = [
 		synchronize: true,
 		entities: ["src/domain/entities/**/*{.ts,.js}"], //[User, Account, History],
 		factories: ["src/seeding/factory/**/*{.ts,.js}"],
-		seeds: ["src/seeding/bada/**/*{.ts,.js}"]
+		seeds: ["src/seeding/seeds/**/*{.ts,.js}"]
 	}
 	// {
 	// 	name: "memory",
