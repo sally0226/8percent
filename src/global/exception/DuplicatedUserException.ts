@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from "@nestjs/common";
-import { ErrorCode } from "src/global/exception/ErrorCode";
+import { ErrorCode } from "./ErrorCode";
 
 export class DuplicatedUserException extends HttpException {
 	constructor() {

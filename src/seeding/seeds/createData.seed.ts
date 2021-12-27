@@ -1,7 +1,7 @@
-import { Account } from "../../domain/entities/account.entity";
-import { User } from "../../domain/entities/user.entity";
-import { History } from "../../domain/entities/history.entity";
-import { Connection, createConnection } from "typeorm";
+import { Account } from "@root/domain/entities/account.entity";
+import { User } from "@root/domain/entities/user.entity";
+import { History } from "@root/domain/entities/history.entity";
+import { Connection } from "typeorm";
 import { Seeder, Factory } from "typeorm-seeding";
 
 export default class CreateData implements Seeder {

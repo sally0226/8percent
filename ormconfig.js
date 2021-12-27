@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-// To configure the path to your seeds and factories change the TypeORM config file (ormconfig.js or ormconfig.json).
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 module.exports = [
 	{
 		name: "default",

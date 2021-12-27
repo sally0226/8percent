@@ -8,7 +8,7 @@ import {
 	ValidationPipe
 } from "@nestjs/common";
 import { ApiOperation } from "@nestjs/swagger";
-import { SearchHistory } from "../../global/decorator/historyDecorator.custom";
+import { SearchHistory } from "@root/global/decorator/historyDecorator.custom";
 import { JwtPayload } from "../auth/dto/jwtPayload.dto";
 import { JwtGuard } from "../auth/guards/jwtGuard.guard";
 import { ParamUser } from "../auth/user.decorator";

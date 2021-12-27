@@ -3,7 +3,7 @@ import { UserService } from "./user.service";
 import { User } from "../entities/user.entity";
 import { UserRepository } from "./user.repository";
 import { AuthService } from "../auth/auth.service";
-import { DuplicatedUserException } from "../../global/exception/DuplicatedUserException";
+import { DuplicatedUserException } from "@root/global/exception/DuplicatedUserException";
 
 const token = "token for test";
 const mockAuthService = {

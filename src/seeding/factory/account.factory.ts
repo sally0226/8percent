@@ -1,7 +1,7 @@
 import { define } from "typeorm-seeding";
 import * as RandExp from "randexp";
-import { Account } from "../../domain/entities/account.entity";
-import { User } from "../../domain/entities/user.entity";
+import { Account } from "@root/domain/entities/account.entity";
+import { User } from "@root/domain/entities/user.entity";
 
 define(Account, (faker, user: User) => {
 	const accountNum = new RandExp(/(\d{6})-(\d{2})-(\d{6})/).gen();

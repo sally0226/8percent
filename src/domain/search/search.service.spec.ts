@@ -1,6 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
+import { NotFoundAccountException } from "@root/global/exception/NotFoundAccountException";
 import { AccountRepository } from "../account/account.repository";
-import { NotFoundAccountException } from "../account/exception/NotFoundAccountException";
 import { HistoryRepository } from "./search.repository";
 import { SearchService } from "./search.service";
 

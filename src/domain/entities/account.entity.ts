@@ -1,6 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
 import {
-	BeforeInsert,
 	Column,
 	DeleteDateColumn,
 	Entity,
@@ -13,7 +12,7 @@ import * as bcrypt from "bcrypt";
 import { BaseModel } from "./base/base.entity";
 import { History } from "./history.entity";
 import { User } from "./user.entity";
-import { LackOfBalanceExcetion } from "../../global/exception/LackOfBalanceException";
+import { LackOfBalanceExcetion } from "@root/global/exception/LackOfBalanceException";
 
 @Entity("account")
 export class Account extends BaseModel {

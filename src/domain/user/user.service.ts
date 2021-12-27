@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
+import { DuplicatedUserException } from "@root/global/exception/DuplicatedUserException";
 import { AuthService } from "../auth/auth.service";
 import { CreateUserDto } from "./dto/createUser.dto";
-import { DuplicatedUserException } from "../../global/exception/DuplicatedUserException";
 import { UserRepository } from "./user.repository";
 
 @Injectable()

@@ -5,7 +5,6 @@ import {
 	Entity,
 	JoinColumn,
 	ManyToOne,
-	PrimaryColumn,
 	PrimaryGeneratedColumn
 } from "typeorm";
 import { Account } from "./account.entity";

@@ -1,4 +1,4 @@
-import { User } from "../../domain/entities/user.entity";
+import { User } from "@root/domain/entities/user.entity";
 import { Connection } from "typeorm";
 import { Seeder, Factory } from "typeorm-seeding";
 

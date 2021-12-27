@@ -4,8 +4,8 @@ import { Account } from "../entities/account.entity";
 import { User } from "../entities/user.entity";
 import { AccountRepository } from "./account.repository";
 import { AccountService } from "./account.service";
-import { IncorrectPasswordException } from "../../global/exception/IncorrectPasswordException";
-import { NotFoundAccountException } from "src/global/exception/NotFoundAccountException";
+import { IncorrectPasswordException } from "@root/global/exception/IncorrectPasswordException";
+import { NotFoundAccountException } from "@root/global/exception/NotFoundAccountException";
 
 const mockRepository = {
 	createOne: jest.fn(async (userId, password, accountNum) => {

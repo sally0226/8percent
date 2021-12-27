@@ -1,8 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { BeforeInsert, Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import { Account } from "./account.entity";
 import { BaseModel } from "./base/base.entity";
-import * as bcrypt from "bcrypt";
 
 @Entity("user")
 export class User extends BaseModel {

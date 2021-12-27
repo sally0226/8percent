@@ -1,5 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import { NotFoundAccountException } from "../account/exception/NotFoundAccountException";
+import { NotFoundAccountException } from "@root/global/exception/NotFoundAccountException";
 import { SearchController } from "./search.controller";
 import { SearchService } from "./search.service";
 

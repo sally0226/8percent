@@ -3,8 +3,8 @@ import { AccountRepository } from "../account/account.repository";
 import { UserRepository } from "../user/user.repository";
 import { TranscationDto } from "./dto/transaction.dto";
 import { TransactionRepository } from "./transaction.repository";
-import { IncorrectPasswordException } from "../../global/exception/IncorrectPasswordException";
 import { Account } from "../entities/account.entity";
+import { IncorrectPasswordException } from "@root/global/exception/IncorrectPasswordException";
 
 @Injectable()
 export class TransactionService {
@@ -20,7 +20,7 @@ export class TransactionService {
 
 		await this.validateAccount(account, user.userId, password);
 
-		await account.deposit(money)
+		account.deposit(money);
 
 		await this.accountRepository.updateBalance(account);
 
@@ -36,7 +36,7 @@ export class TransactionService {
 
 		await this.validateAccount(account, user.userId, password);
 
-		await account.withdraw(money)
+		account.withdraw(money);
 
 		await this.accountRepository.updateBalance(account);
 

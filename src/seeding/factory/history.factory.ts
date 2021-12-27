@@ -1,7 +1,7 @@
+import { Account } from "@root/domain/entities/account.entity";
+import { History } from "@root/domain/entities/history.entity";
 import * as RandExp from "randexp";
-import { define, factory } from "typeorm-seeding";
-import { Account } from "../../domain/entities/account.entity";
-import { History } from "../../domain/entities/history.entity";
+import { define } from "typeorm-seeding";
 
 // let id = 1;
 define(History, (faker, account: Account) => {
